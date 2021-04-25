@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rafael Nadal Profile Page</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="styles.css">
+        <script src="scripts.js" defer></script>
+    </head>
+    <body>
+        <!-- Η κεφαλίδα με την φωτογραφία, τα στοιχεία και τα social media του αθλητή -->
+        <header>
+            <!-- Η φωτογραφία του αθλητή -->
+            <figure class="profile_figure">
+                <img src="assets/profile/athlete_photo.webp" alt="Nadal's picture">
+                <figcaption>Rafael Nadal</figcaption>
+            </figure>
+
+            <!-- Οι προσωπικές πληροφορίες του αθλητή -->
+            <div id="personal_data">
+                <ul class="personal-info-list">
+                    <li class="personal-info-item">
+                        <p>Spanish</p>
+                        <p>Nationality</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p>Mallorca</p>
+                        <p>Birthplace</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p>3 (9670)</p>
+                        <p>Rank (PTS)</p>
+                    </li>
+                </ul>
+                <ul class="personal-info-list">
+                    <li class="personal-info-item">
+                        <p>1.85m</p>
+                        <p>Height</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p>85kg</p>
+                        <p>Weight</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p>34</p>
+                        <p>Age</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Τα κοινωνικά δίκτυα του αθλητή -->
+            <ul id="social">
+                <li id="facebook" class="social-info-item">
+                    <a href="https://www.facebook.com/Nadal" target="_blank"><img src="assets/profile/facebook.png" alt="facebook" class="icon"></a>
+                    <p>14m</p>
+                </li>
+                <li id="instagram" class="social-info-item">
+                    <a href="https://www.instagram.com/rafaelnadal/" target="_blank"><img src="assets/profile/instagram.png" alt="instagram" class="icon"></a>
+                    <p>10m</p>
+                </li>
+                <li id="twitter" class="social-info-item">
+                    <a href="https://twitter.com/RafaelNadal" target="_blank"><img src="assets/profile/twitter.png" alt="twitter" class="icon"></a>
+                    <p>15m</p>
+                </dliiv>
+            </ul>
+        </header>
+
+        <!-- Το κυρίως περιεχόμενο με τα στατιστικά, τους αγώνες και τους τίτλους -->
+        <main>
+            <!-- Τα στατιστικά της καρίερας του αθλητή -->
+            <section id="statistics">
+                <h1 class="section-header">Statistics</h1>
+
+                <select id="stats-table-content-select" class="dropdown-select">
+                    <option value="career">Career</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                </select>
+
+                <div id="statistics-filter-check-list" class="dropdown-check-list">
+                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="statistics-filter">
+                    <ul id="statistics-filter-service-dropdown-items">
+                        <h1>Service</h1>
+                    </ul>
+                    <ul id="statistics-filter-return-dropdown-items">
+                        <h1>Return</h1>
+                    </ul>
+                </div>
+
+                <table id="first-stats-table">
+                   <thead>
+                        <tr class="stats-table-header">
+                            <th>Singles Service Record</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div class="stats-separator"></div>
+
+                <table id="second-stats-table">
+                    <thead>
+                        <tr class="stats-table-header">
+                            <th>Singles Return Record</th>
+                        </tr>
+                    </thead>
+                </table>
+            </section>
+
+            <!-- Τα στοιχεία των πρόσφατων αγώνων του αθλητή -->
+            <section id="matches">
+                <h1 class="section-header">Matches</h1>
+
+                <div id="matches-filter-check-list" class="dropdown-check-list">
+                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="matches-filter">
+                    <ul id="matches-filter-dropdown-items">
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Οι τίτλοι που έχει κατακτήσει ο αθλητής -->
+            <section id="titles">
+                <h1 class="section-header">Titles</h1>
+
+                <div id="titles-filter-check-list" class="dropdown-check-list">
+                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="titles-filter">
+                    <ul id="titles-filter-dropdown-items">
+                    </ul>
+                </div>
+
+                <select id="tiles-table-sortby-select" class="dropdown-select">
+                    <option value="year-desc">Year Desc</option>
+                    <option value="year-asc">Year Asc</option>
+                    <option value="titles-desc">Titles Desc</option>
+                    <option value="titles-asc">Titles Asc</option>
+                </select>
+
+                <table id="titles-table">
+                </table>
+            </section>
+        </main>
+    </body>
+</html>

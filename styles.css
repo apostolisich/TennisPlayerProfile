@@ -1,0 +1,514 @@
+/* Κάνω reset τo p για να το ορίζω ανάλογα με τις ανάγκες */
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+    background-color: rgb(220, 224, 228);
+}
+
+/* Styling για την κεφαλίδα */
+header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    justify-items: stretch;
+    align-items: stretch;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 3px solid rgba(3, 102, 214, 0.3);
+    border-radius: 10px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    background-color: white;
+    text-align: center;
+}
+
+.profile_figure {
+    grid-column: 1 / 2;
+    font-weight: 700;
+    font-size: 16px;
+    color: rgb(64, 64, 64);
+}
+
+.profile_figure img {
+    height: 80px;
+}
+
+#personal_data {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+}
+
+.personal-info-list {
+    grid-column: 1 / 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 5px;
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+.personal-info-item {
+    align-self: center;
+}
+
+.personal-info-item p:nth-child(1) {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(64, 64, 64);
+}
+
+.personal-info-item p:nth-child(2) {
+    color: rgb(128, 128, 128);
+}
+
+#social {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 5px;
+    padding-left: 0px;
+    height: 100%;
+}
+
+.social-info-item {
+    display: flex;
+    padding: 2.5px;
+    color: rgb(128, 128, 128);
+}
+
+.social-info-item:hover {
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+}
+
+#facebook:hover {
+    background-color: #3b5998;
+}
+
+#instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+#twitter:hover {
+    background-color: #AAB8C2;
+}
+/* Τέλος styling για την κεφαλίδα*/
+
+.icon {
+    height: 28px;
+    margin-right: 5px;
+}
+
+#statistics    { grid-area: stat_data; }
+#matches       { grid-area: matc_data; }
+#titles        { grid-area: titl_data; }
+
+main {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+        "stat_data stat_data"
+        "matc_data titl_data";
+}
+
+/* Το βασικό header που χρησιμοποιείται στο κάθε section */
+.section-header {
+    margin: 0px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(128, 128, 128);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Styling για τα στατιστικά */
+#statistics {
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: 1fr 3px 1fr;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+}
+
+#statistics .section-header {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+#stats-table-content-select {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    justify-self: end;
+    position: relative;
+}
+
+.dropdown-select {
+    align-self: center;
+    width: 90px;
+    height: 20px;
+    right: 10px;
+    border: 1px solid rgb(220, 224, 228);
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-select option {
+    font-weight: bold;
+}
+
+.dropdown-check-list {
+    position: absolute;
+    top: 2.1px;
+    left: 10px;
+}
+
+.dropdown-check-list .dropdown-checklist-anchor {
+    position: relative;
+    left: 0px;
+    height: 18px;
+    cursor: pointer;
+    display: inline-block;
+    background-color: white;
+    padding: 2px 2px 0px 2px;
+    border-radius: 3px;
+}
+
+.dropdown-check-list ul {
+    position: relative;
+    top: -4px;
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid black;
+    border-top: none;
+    background-color: white;
+    font-size: 14px;
+    width: 215px;
+    z-index: 1;
+}
+
+.dropdown-check-list ul h1 {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.dropdown-check-list ul li {
+    list-style: none;
+}
+
+#first-stats-table, #second-stats-table {
+    padding: 5px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+#first-stats-table {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    height: 100%;
+    border-left: 3px solid rgb(128, 128, 128);
+    border-bottom: 3px solid rgb(128, 128, 128);
+    border-bottom-left-radius: 10px;
+}
+
+#second-stats-table {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    height: 100%;
+    border-right: 3px solid rgb(128, 128, 128);
+    border-bottom: 3px solid rgb(128, 128, 128);
+    border-bottom-right-radius: 10px;
+}
+
+.stats-table-header {
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(64, 64, 64);
+    border-bottom: 1px solid rgb(220, 224, 228);
+}
+
+#statistics tr {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    justify-items: stretch;
+    font-size: 14px;
+}
+
+#statistics tbody tr:not(:last-child) {
+    border-bottom: 1px solid rgb(220, 224, 228);
+}
+
+#statistics tbody td:last-child {
+    padding-left: 5px;
+    border-left: 1px solid rgb(220, 224, 228);
+}
+
+.stats-separator {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: rgb(128, 128, 128);
+}
+/* Τέλος styling για τα στατιστικά */
+
+/* Styling για τους αγώνες */
+#matches {
+    position: relative;
+}
+
+#matches .dropdown-check-list ul {
+    width: 130px;
+}
+
+.match-table {
+    font-size: 14px;
+    padding: 0px 5px;
+    border-left: 3px solid rgb(128, 128, 128);
+    border-right: 3px solid rgb(128, 128, 128);
+    background-color: white;
+}
+
+.match-table:last-child {
+    padding-bottom: 5px;
+    border-bottom: 3px solid rgb(128, 128, 128);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.match-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0px;
+    color: rgb(64, 64, 64);
+    font-weight: 600;
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+.match-table-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 0.5fr 0.5fr;
+    justify-items: stretch;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 2.5px;
+    color: rgb(128, 128, 128);
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.match-table-row:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.match-table-row:hover {
+    background-color: rgb(220, 224, 228)
+}
+
+.match-table-row-dates {
+    text-align: center;
+    color: rgb(128, 128, 128);
+    border-right: 1px solid rgb(220, 224, 228);
+}
+
+.match-table-row-results {
+    text-align: right;
+    margin-right: 5px;
+}
+
+.match-table-row-result-img {
+    align-self: center;
+    padding-left: 5px;
+    border-left: 1px solid rgb(220, 224, 228);
+}
+
+.match-winner {
+    color: rgb(64, 64, 64);
+    font-weight: 500;
+}
+
+.match-loser {
+    color: rgb(128, 128, 128);
+}
+
+.match-cancelled {
+    color: rgb(193, 39, 45);
+}
+/* Τέλος styling για τους αγώνες */
+
+/* Styling για τους τίτλους */
+#titles {
+    position: relative;
+}
+
+#titles .dropdown-check-list ul {
+    width: 115px;
+}
+
+#titles-table {
+    width: 100%;
+    padding: 0px 5px;
+    border-left: 3px solid rgb(128, 128, 128);
+    border-right: 3px solid rgb(128, 128, 128);
+    background-color: white;
+}
+
+#tiles-table-sortby-select {
+    position: absolute;
+    top: 2.1px;
+}
+
+#titles-table:last-child {
+    border-bottom: 3px solid rgb(128, 128, 128);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#titles-table tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    text-align: center;
+    padding: 5px 0px;
+}
+
+#titles-table tr:not(:last-child) {
+    border-bottom: 1px solid rgb(128, 128, 128);
+}
+
+.title-entry {
+    display: flex;
+    align-content: center;
+}
+
+#titles-table td:last-child {
+    text-align: left;
+}
+/* Τέλος styling για τους τίτλους */
+
+/* Media query για αναλύσεις κάτω από 800px */
+@media all and (max-width: 800px) {
+    main {
+        grid-template-columns: 1.1fr 1fr;
+    }
+
+    header {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .profile_figure {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    #personal_data {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    #social {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .social_info {
+        flex-direction: column;
+    }
+
+    .social_info .icon {
+        margin-right: 0px;
+    }
+
+    .match-table-row {
+        grid-template-columns: 1fr 2fr 1fr 0.5fr;
+    }
+
+    .points {
+        display: none;
+    }
+}
+/* Τέλος media query για αναλύσεις κάτω από 800px */
+
+/* Media query για αναλύσεις κάτω από 590px */
+@media all and (max-width: 590px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "stat_data"
+            "matc_data"
+            "titl_data";
+    }
+
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 0.5fr;
+    }
+
+    .profile_figure {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #personal_data {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    #social {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+
+    #statistics {
+        grid-template-columns: 1fr;
+    }
+
+    #statistics .section-header {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #first-stats-table {
+        grid-row: 2 / 3;
+        border-left: 3px solid rgb(128, 128, 128);
+        border-right: 3px solid rgb(128, 128, 128);
+        border-bottom-left-radius: 0px;
+        border-bottom: none;
+    }
+    
+    .stats-separator {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        height: 3px;
+        background-color: rgb(128, 128, 128);
+    }
+
+    #second-stats-table {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+        border-left: 3px solid rgb(128, 128, 128);
+        border-right: 3px solid rgb(128, 128, 128);
+        border-bottom: 3px solid rgb(128, 128, 128);
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+}
