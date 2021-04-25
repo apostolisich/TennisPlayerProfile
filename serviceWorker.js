@@ -12,7 +12,7 @@ const assets = [
     "assets/tournaments/acapulco.jpg",
     "assets/tournaments/atp_cup.webp",
     "assets/tournaments/atp_finals.webp",
-    "assets/tournaments/austratian_open.webp",
+    "assets/tournaments/australian_open.webp",
     "assets/tournaments/barcelona_open.png",
     "assets/tournaments/buenos_aires.webp",
     "assets/tournaments/china_open.png",
