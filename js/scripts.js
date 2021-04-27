@@ -193,7 +193,7 @@ const Tournaments = {
         value: "Paris"
     }
 };
-Object.freeze(Tournaments);
+//Object.freeze(Tournaments);
 
 //Ένας πίνακας που αποτελείται από αντικείμενα, καθένα από τα οποία περιέχει τίτλους για μια συγκεκριμένη χρονιά
 const titlesTableData = [
@@ -285,7 +285,7 @@ const matchesTableData = [
         matches: [
             {
                 link: "https://www.sofascore.com/nadal-tsitsipas/LOfsqXY",
-                date: "17/02/21",
+                date: "17/02/2021",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Tsitsipas S.", "3 2 7<sup>7</sup> 6 7", "3"],
@@ -294,7 +294,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/fognini-nadal/LOfsJig",
-                date: "15/02/21",
+                date: "15/02/2021",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 6", "3"],
@@ -303,7 +303,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/norrie-nadal/LOfsKtN",
-                date: "13/02/21",
+                date: "13/02/2021",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "7 6 7", "3"],
@@ -312,7 +312,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/nadal-mmoh/LOfsRDcb",
-                date: "11/02/21",
+                date: "11/02/2021",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 6", "3"],
@@ -321,7 +321,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/djere-nadal/LOfsGUN",
-                date: "09/02/21",
+                date: "09/02/2021",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 6", "3"],
@@ -338,7 +338,7 @@ const matchesTableData = [
         matches: [
             {
                 link: "https://www.sofascore.com/nadal-tsitsipas/LOfsqXY",
-                date: "05/02/21",
+                date: "05/02/2021",
                 status: "Cancelled",
                 winnerFirst: true,
                 winner: [ "Tsitsipas S." ],
@@ -347,7 +347,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/de-minaur-nadal/LOfsOzFb",
-                date: "02/02/21",
+                date: "02/02/2021",
                 status: "Cancelled",
                 winnerFirst: true,
                 winner: [ "de Minaur A." ],
@@ -364,7 +364,7 @@ const matchesTableData = [
         matches: [
             {
                 link: "https://www.sofascore.com/medvedev-nadal/LOfsevpb",
-                date: "21/11/20",
+                date: "21/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Medvedev D.", "3 7<sup>7</sup> 6", "2"],
@@ -373,7 +373,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/nadal-tsitsipas/LOfsqXY",
-                date: "19/11/20",
+                date: "19/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Nadal R.", "6 4 6", "2"],
@@ -382,7 +382,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/thiem-nadal/LOfsYzr",
-                date: "17/11/20",
+                date: "17/11/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Thiem D.", "7<sup>9</sup> 7<sup>7</sup>", "2"],
@@ -391,7 +391,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/nadal-rublev/LOfsfKR",
-                date: "15/11/20",
+                date: "15/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Nadal R.", "6 6", "2"],
@@ -408,7 +408,7 @@ const matchesTableData = [
         matches: [
             {
                 link: "https://www.sofascore.com/zverev-nadal/LOfsnTx",
-                date: "07/11/20",
+                date: "07/11/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Zverev A.", "6 7", "2" ],
@@ -417,7 +417,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/carreno-busta-nadal/LOfsaqq",
-                date: "06/11/20",
+                date: "06/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Nadal R.", "4 7 6", "2" ],
@@ -426,7 +426,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/thompson-nadal/LOfsPdK",
-                date: "05/11/20",
+                date: "05/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Nadal R.", "6 7<sup>7</sup>", "2" ],
@@ -435,7 +435,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/nadal-lopez/pOfsLOf",
-                date: "04/11/20",
+                date: "04/11/2020",
                 status: "FT",
                 winnerFirst: true,
                 winner: [ "Nadal R.", "4 7<sup>7</sup> 6", "2" ],
@@ -452,7 +452,7 @@ const matchesTableData = [
         matches: [
             {
                 link: "https://www.sofascore.com/djokovic-nadal/LOfsHXf",
-                date: "11/10/20",
+                date: "11/10/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 7", "3" ],
@@ -461,7 +461,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/schwartzman-nadal/LOfsZwu",
-                date: "09/10/20",
+                date: "09/10/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 5 1<sup>7</sup>", "3" ],
@@ -470,7 +470,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/sinner-nadal/LOfsvGHb",
-                date: "06/10/20",
+                date: "06/10/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "7<sup>7</sup> 6 6", "3" ],
@@ -479,7 +479,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/korda-nadal/LOfsPqDb",
-                date: "04/10/20",
+                date: "04/10/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 6", "3" ],
@@ -488,7 +488,7 @@ const matchesTableData = [
             },
             {
                 link: "https://www.sofascore.com/travaglia-nadal/LOfsaBo",
-                date: "02/10/20",
+                date: "02/10/2020",
                 status: "FT",
                 winnerFirst: false,
                 winner: [ "Nadal R.", "6 6 6", "3" ],
@@ -499,15 +499,40 @@ const matchesTableData = [
     }
 ];
 
+$('.yearpicker').yearpicker();
+
+
 //Κλήση των συναρτήσεων που απαιτούνται για το αρχικό "γέμισμα" των HTML στοιχείων
 fillStatsTableData(statsTableData.career.singlesServiceRecordData, 'first-stats-table');
 fillStatsTableData(statsTableData.career.singlesReturnRecordData, 'second-stats-table');
 fillMatchesTableData(matchesTableData, false, null);
 fillTitlesTableData(titlesTableData, false, null);
+/*store("stats", statsTableData);
+store("titles", titlesTableData);
+retrieveAllLocalStorageItems();*/
 generateAvailableFilterValuesFor(statsTableData.career.singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
 generateAvailableFilterValuesFor(statsTableData.career.singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
 generateAvailableFilterValuesFor(matchesTableData, 'matches-filter-dropdown-items', 'matches');
 generateAvailableFilterValuesFor(titlesTableData, 'titles-filter-dropdown-items', 'titles');
+
+/* TEMPLATE FOR LocalStorage!!!
+Μπορώ στα αντικείμενα του κάθε αθλητή να βάλω το όνομα του μπροστά αν θέλω, ή κάτι τέτοιο
+function store(constName, tableData) {
+    if(localStorage.getItem(constName) == null)
+        localStorage.setItem(constName, JSON.stringify(tableData));
+}
+
+function retrieveAllLocalStorageItems() {
+    let i = Object.keys(localStorage).length;
+    Object.keys(localStorage).forEach(item => {
+        if(item.startsWith("athlete")){
+
+        }
+        console.log(item);
+        console.log(localStorage.getItem(item));
+        
+    });
+}*/
 
 //Γεμίζει το HTML table που έχει το δοσμένο tableId με τα δοσμένα δεδομένα (data)
 function fillStatsTableData(data, tableId) {
@@ -536,6 +561,15 @@ function fillMatchesTableData(tableData, isForFiltering, checkBoxesData) {
     });
 
     tableData.forEach( item => {
+        item.matches.sort((matchA, matchB) => {
+                let matchASplitDate = matchA.date.split("/");
+                let matchBSplitDate = matchB.date.split("/");
+                let aDate = new Date(matchASplitDate[2], matchASplitDate[1], matchASplitDate[0]);
+                let bDate = new Date(matchBSplitDate[2], matchBSplitDate[1], matchBSplitDate[0])
+
+                return bDate - aDate;
+        });
+
         let tableContainer = document.createElement('div');
         tableContainer.classList.add('match-table');
         let header = document.createElement('div');
@@ -847,7 +881,7 @@ function filterMatchesTableData(tableData, filterValues) {
     filterValues.sort((string1, string2) => {
         let nameA = string1[0].toLowerCase().replace(/\s+/g, '');
         let nameB = string2[0].toLowerCase().replace(/\s+/g, '');
-
+    
         if (nameA < nameB) {
             return -1;
         }
@@ -863,24 +897,328 @@ function filterMatchesTableData(tableData, filterValues) {
 const statisticsCheckList = document.getElementById('statistics-filter-check-list');
 const statisticsServiceCheckListItems = document.getElementById('statistics-filter-service-dropdown-items');
 const statisticsReturnCheckListItems = document.getElementById('statistics-filter-return-dropdown-items');
-statisticsCheckList.getElementsByClassName('dropdown-checklist-anchor')[0].addEventListener('click', function () {
+
+statisticsCheckList.getElementsByClassName('action-button')[0].addEventListener('click', function () {
     handleCheckListVisibility(statisticsServiceCheckListItems);
     handleCheckListVisibility(statisticsReturnCheckListItems);
 });
 
 //Ένας event listener που "ακούει" για κλικ στο dropdown με τα φίλτρα στα ματς ώστε να εμφανίσει/αποκρύψει τις επιλογές
-const matchesCheckList = document.getElementById('matches-filter-check-list');
-const matchesCheckListItems = document.getElementById('matches-filter-dropdown-items');
-matchesCheckList.getElementsByClassName('dropdown-checklist-anchor')[0].addEventListener('click', function () {
-    handleCheckListVisibility(matchesCheckListItems);
+const matchesAdditionModal = document.getElementById('matches-addition-modal');
+const matchesActionButtons = document.getElementById('matches-filter-check-list').getElementsByClassName('action-button');
+const matchAdditionForm = document.getElementById('match-addition-form');
+const existingTournamentDiv = document.getElementById('modal-form-existing-tournament');
+const newTournamentDiv = document.getElementById('modal-form-new-tournament');
+const matchesNewTournamentImage = document.getElementById('modal-form-image-upload');
+const matchesNewTournamentLabel = document.getElementById('modal-form-image-label');
+
+matchesNewTournamentImage.addEventListener('change', () => {
+    matchesNewTournamentLabel.textContent = matchesNewTournamentImage.files[0].name;
+});
+
+document.getElementById('existing-tournament-radio').addEventListener('change', () => {
+    showHideElements(newTournamentDiv, existingTournamentDiv);
+    document.getElementById('modal-form-new-tournament-name').setAttribute("required", "")
+    matchesNewTournamentImage.required = true;
+});
+
+document.getElementById('new-tournament').addEventListener('change', () => {
+    showHideElements(existingTournamentDiv, newTournamentDiv);
+    document.getElementById('modal-form-new-tournament-name').removeAttribute("required");
+    matchesNewTournamentImage.required = false;
+});
+
+function showHideElements(itemToHide, itemToReveal) {
+    itemToHide.style.display = "none";
+    itemToReveal.style.display = "flex";
+};
+
+function fillExistingTournamentsDropdown(isForMatch) {
+    let dropdownMenu;
+    let availableTournaments = [];
+    if(isForMatch) {
+        dropdownMenu = document.getElementById('modal-tournament-select');
+        matchesTableData.forEach( entry => {
+            availableTournaments.push(entry.header.title);
+        });
+    } else {
+        dropdownMenu = document.getElementById('modal-title-select-tournament');
+        titlesTableData.forEach( titlesObject => {
+            titlesObject.titles.forEach( titleEntry => {
+                let titleName = titleEntry[0];
+                if(!availableTournaments.includes(titleName))
+                availableTournaments.push(titleName);
+            });
+        });
+    }
+
+    dropdownMenu.querySelectorAll('option').forEach(child => {
+        dropdownMenu.removeChild(child);
+    });
+
+    availableTournaments.forEach( item => {
+        let option = document.createElement('option');
+        option.value = item;
+        option.text = item;
+        dropdownMenu.appendChild(option);
+    });
+}
+
+matchAdditionForm.addEventListener('submit', event => {
+    event.preventDefault();
+    let selectedTournamentRadio = document.getElementById('existing-tournament-radio');
+    if(selectedTournamentRadio.checked) {
+        let tournament = document.getElementById('modal-tournament-select');
+        let existingMatchObject;
+        matchesTableData.forEach( item => {
+            if(item.header.title == tournament.value) {
+                existingMatchObject = item;
+                return;
+            }
+        });
+
+        let newMatchObject = createNewMatchObject();
+
+        existingMatchObject.matches.push(newMatchObject);
+        matchAdditionForm.reset();
+        matchesAdditionModal.style.display = "none";
+    } else {
+        let tournamentName = document.getElementById('modal-form-new-tournament-name').value;
+
+        let newTournament = {
+            header: {
+                image: URL.createObjectURL(matchesNewTournamentImage.files[0]),
+                title: tournamentName
+            }
+
+        };
+
+        let newMatchObject = createNewMatchObject();
+        newTournament.matches = [newMatchObject];
+        matchesTableData.push(newTournament);
+    }
+
+    fillMatchesTableData(matchesTableData, false, null);
+    matchAdditionForm.reset();
+    matchesAdditionModal.style.display = "none";
+    showHideElements(newTournamentDiv, existingTournamentDiv);
+    disableFieldsForCancelledMatch(false);
+    matchesNewTournamentLabel.textContent = "Upload image...";
+    generateAvailableFilterValuesFor(matchesTableData, 'matches-filter-dropdown-items', 'matches');
+});
+
+function createNewMatchObject() {
+    let newMatchObject = {};
+    newMatchObject.link = document.getElementById('modal-form-match-link').value;
+
+    let dateInput = document.getElementById('modal-form-date');
+    let date = new Date(dateInput.value);
+    newMatchObject.date = date.toLocaleDateString('en-GB');
+
+    let cancelledCheckbox = document.getElementById('modal-form-canceled-tournament');
+    let opponentAPoints = document.getElementById('modal-form-opponentA-points').value;
+    let opponentAResult = document.getElementById('modal-form-opponentA-result').value;
+    let opponentBName = document.getElementById('modal-form-opponentB-name').value;
+    let opponentBPoints = document.getElementById('modal-form-opponentB-points').value;
+    let opponentBResult = document.getElementById('modal-form-opponentB-result').value;
+
+    if(cancelledCheckbox.checked) {
+        newMatchObject.status = "Cancelled";
+        newMatchObject.result_img = MatchResultIcons.CANCELLED;
+
+        newMatchObject.winner = [ "Nadal R." ];
+        newMatchObject.loser = [ opponentBName ];
+    } else {
+        let isNadalWinner = document.getElementById('modal-form-nadal-winner-radio').checked;
+        newMatchObject.result_img = isNadalWinner ? MatchResultIcons.WIN : MatchResultIcons.DEFEAT;
+
+        newMatchObject.status = "FT";
+        newMatchObject.winnerFirst = false;
+
+        if(isNadalWinner) {
+            newMatchObject.winner = [ "Nadal R.", opponentAPoints, opponentAResult];
+            newMatchObject.loser = [ opponentBName, opponentBPoints, opponentBResult];
+        } else {
+            newMatchObject.loser = [ "Nadal R.", opponentAPoints, opponentAResult];
+            newMatchObject.winner = [ opponentBName, opponentBPoints, opponentBResult];
+        }
+    }
+
+    return newMatchObject;
+}
+
+document.getElementById('modal-form-canceled-tournament').addEventListener('change', (event) => {
+    if(event.target.checked) {
+        disableFieldsForCancelledMatch(true);
+    } else {
+        disableFieldsForCancelledMatch(false);
+    }
+});
+
+let disableFieldsForCancelledMatch = function (flag) {
+    document.getElementsByClassName('modal-form-opponents-groups')[0].querySelectorAll('input:nth-child(3), input:nth-child(4), input[type="radio"]').forEach( inputElement => {
+        inputElement.disabled = flag;
+    });
+}
+
+matchesActionButtons[0].addEventListener('click', function () {
+    handleCheckListVisibility(document.getElementById('matches-filter-dropdown-items'));
+});
+
+matchesActionButtons[1].addEventListener('click', function () {
+    fillExistingTournamentsDropdown(true);
+    matchesAdditionModal.style.display = "block";
+});
+
+document.getElementById('matches-close-button').addEventListener('click', () => {
+    matchAdditionForm.reset();
+    showHideElements(newTournamentDiv, existingTournamentDiv);
+    matchesAdditionModal.style.display = "none";
 });
 
 //Ένας event listener που "ακούει" για κλικ στο dropdown με τα φίλτρα στους τίτλους ώστε να εμφανίσει/αποκρύψει τις επιλογές
-const titlesCheckList = document.getElementById('titles-filter-check-list');
+const titlesActionButtons = document.getElementById('titles-filter-check-list').getElementsByClassName('action-button');
 const titlesCheckListItems = document.getElementById('titles-filter-dropdown-items');
-titlesCheckList.getElementsByClassName('dropdown-checklist-anchor')[0].addEventListener('click', function () {
+const titlesAdditionModal = document.getElementById('titles-addition-modal');
+const titlesAdditionForm = document.getElementById('title-addition-form');
+const titlesAdditionFormExistingYear = document.getElementById('modal-form-existing-year');
+const titlesAdditionFormNewYear = document.getElementById('modal-form-title-new-year');
+const titlesAdditionFormExistingTournament = document.getElementById('modal-form-title-existing-tournament');
+const titlesAdditionFormNewTournament = document.getElementById('modal-form-title-new-tournament');
+const titlesAdditionFormImageUpload = document.getElementById('modal-form-title-image-upload');
+
+titlesActionButtons[0].addEventListener('click', function () {
     handleCheckListVisibility(titlesCheckListItems);
 });
+
+titlesActionButtons[1].addEventListener('click', function () {
+    fillExistingYearsDropdown();
+    fillExistingTournamentsDropdown(false);
+    titlesAdditionModal.style.display = "block";
+});
+
+titlesAdditionFormImageUpload.addEventListener('change', () => {
+    document.getElementById('modal-form-title-image-label').textContent = titlesAdditionFormImageUpload.files[0].name;
+});
+
+document.getElementById('titles-close-button').addEventListener('click', () => {
+    titlesAdditionForm.reset();
+    showHideElements(titlesAdditionFormNewTournament, titlesAdditionFormExistingTournament);
+    titlesAdditionModal.style.display = "none";
+});
+
+//TODO!!!!!! Ίσως μπορώ να ενώσω αυτό με το fillExistingMatchDropdown!!!!
+function fillExistingYearsDropdown() {
+    let dropdownMenu = document.getElementById('modal-title-select-year');
+    dropdownMenu.querySelectorAll('option').forEach(child => {
+        dropdownMenu.removeChild(child);
+    });
+
+    let availableTitles = [];
+    titlesTableData.forEach( entry => {
+        availableTitles.push(entry.year);
+    });
+
+    availableTitles.forEach( item => {
+        let option = document.createElement('option');
+        option.value = item;
+        option.text = item;
+        dropdownMenu.appendChild(option);
+    });
+};
+
+document.getElementById('existing-title-year-radio').addEventListener('change', () => {
+    showHideElements(titlesAdditionFormNewYear, titlesAdditionFormExistingYear);
+    document.getElementById('modal-form-title-new-year').setAttribute("required", "");
+});
+document.getElementById('new-title-year-radio').addEventListener('change', () => {
+    showHideElements(titlesAdditionFormExistingYear, titlesAdditionFormNewYear);
+    document.getElementById('modal-form-title-new-year').removeAttribute("required");
+});
+
+document.getElementById('existing-title-tournament-radio').addEventListener('change', () => {
+    showHideElements(titlesAdditionFormNewTournament, titlesAdditionFormExistingTournament);
+    document.getElementById('modal-form-title-new-year').setAttribute("required", "");
+});
+
+document.getElementById('new-title-tournament-radio').addEventListener('change', () => {
+    showHideElements(titlesAdditionFormExistingTournament, titlesAdditionFormNewTournament);
+    document.getElementById('modal-form-title-new-year').removeAttribute("required");
+});
+
+titlesAdditionForm.addEventListener('submit', event => {
+    event.preventDefault();
+    let existingYearRadio = document.getElementById('existing-title-year-radio');
+    let yearValue;
+    if(existingYearRadio.checked) {
+        yearValue = document.getElementById('modal-title-select-year').value;
+        let existingTitleObject;
+        titlesTableData.forEach( item => {
+            if(item.year == yearValue) {
+                existingTitleObject = item;
+                return;
+            }
+        });
+
+        let titlesArray = createNewTitleArray();
+        existingTitleObject.titles.push(titlesArray);
+    } else {
+        yearValue = document.getElementById('modal-form-title-new-year').value;
+        let newTitlesTableEntry = {
+            year: parseInt(yearValue),
+            count: 1
+        };
+
+        let titlesArray = createNewTitleArray();
+        newTitlesTableEntry.titles = [titlesArray];
+        titlesTableData.push(newTitlesTableEntry);
+    }
+
+    titlesTableData.sort(titlesYearDescCompare);
+    fillTitlesTableData(titlesTableData, false, null);
+    titlesAdditionForm.reset();
+    titlesAdditionModal.style.display = "none";
+    showHideElements(titlesAdditionFormNewYear, titlesAdditionFormExistingYear);
+    showHideElements(titlesAdditionFormNewTournament, titlesAdditionFormExistingTournament);
+    document.getElementById('modal-form-title-image-label').textContent = "Upload image...";
+    generateAvailableFilterValuesFor(titlesTableData, 'titles-filter-dropdown-items', 'titles');
+});
+
+function createNewTitleArray() {
+    let newTitleObject = [];
+    let isExistingTournamentSelected = document.getElementById('existing-title-tournament-radio').checked;
+
+    let selectedTournament;
+    if(isExistingTournamentSelected) {
+        selectedTournament = document.getElementById('modal-title-select-tournament').value;
+        console.log("selected tournament: " + selectedTournament);
+        Object.keys(Tournaments).forEach( item => {
+            console.log(item);
+            console.log(Tournaments[item]);
+            if(selectedTournament == Tournaments[item].key) {
+                newTitleObject[2] = Tournaments[item].img;
+                return;
+            }
+        });
+
+        newTitleObject[0] = selectedTournament;
+        newTitleObject[1] = selectedTournament;
+    } else {
+        selectedTournament = document.getElementById('modal-form-title-new-tournament-name').value;
+        let image = titlesAdditionFormImageUpload;
+
+        newTitleObject[0] = selectedTournament;
+        newTitleObject[1] = selectedTournament;
+        newTitleObject[2] = URL.createObjectURL(image.files[0]);
+        Tournaments[selectedTournament] = {
+            key: selectedTournament,
+            value: selectedTournament,
+            img: newTitleObject[2]
+        };
+    }
+
+    return newTitleObject;
+}
 
 //Μια βοηθητική συνάρτηση που ορίζει την ορατότητα για τη δοσμένη λίστα αντικειμένων
 function handleCheckListVisibility(checkListItems) {

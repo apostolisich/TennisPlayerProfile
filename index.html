@@ -5,8 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rafael Nadal Profile Page</title>
         <link rel="manifest" href="manifest.json">
-        <link rel="stylesheet" href="styles.css">
-        <script src="scripts.js" defer></script>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/yearpicker.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/scripts.js" defer></script>
+        <script src="js/yearpicker.js"></script>
+        <script src="https://kit.fontawesome.com/a393b2b1d0.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- Η κεφαλίδα με την φωτογραφία, τα στοιχεία και τα social media του αθλητή -->
@@ -80,7 +84,7 @@
                 </select>
 
                 <div id="statistics-filter-check-list" class="dropdown-check-list">
-                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="statistics-filter">
+                    <button id="" class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
                     <ul id="statistics-filter-service-dropdown-items">
                         <h1>Service</h1>
                     </ul>
@@ -113,7 +117,8 @@
                 <h1 class="section-header">Matches</h1>
 
                 <div id="matches-filter-check-list" class="dropdown-check-list">
-                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="matches-filter">
+                    <button class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
+                    <button class="action-button"><i class="fa fa-plus"></i></button>
                     <ul id="matches-filter-dropdown-items">
                     </ul>
                 </div>
@@ -124,7 +129,8 @@
                 <h1 class="section-header">Titles</h1>
 
                 <div id="titles-filter-check-list" class="dropdown-check-list">
-                    <img src="assets/general/filter.png" class="dropdown-checklist-anchor" alt="titles-filter">
+                    <button class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
+                    <button class="action-button"><i class="fa fa-plus"></i></button>
                     <ul id="titles-filter-dropdown-items">
                     </ul>
                 </div>
@@ -139,6 +145,134 @@
                 <table id="titles-table">
                 </table>
             </section>
+
+            <!-- Ένα αναδυόμενο παράθυρο το οποίο εμφανίζεται πατώντας το κουμπί προσθήκης τίτλου -->
+            <aside id="titles-addition-modal" class="modal">
+                <section class="modal-content">
+                    <h1>Add a new title</h1>
+                    <form id="title-addition-form" class="modal-form">
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-title-year-radio" value="existing-title-year-radio" name="title-year-selection" checked>
+                                <label for="existing-title-year-radio">Existing year</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-title-year-radio" value="new-title-year-radio" name="title-year-selection">
+                                <label for="new-title-year-radio">New year</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-existing-year">
+                            <label for="modal-title-select-year">Select year:</label>
+                            <select id="modal-title-select-year" class="dropdown-select">
+                            </select>
+                        </div>
+
+                        <div>
+                            <input type="text" class="yearpicker" value="" id="modal-form-title-new-year" placeholder="Fill new year...">
+                        </div>
+
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-title-tournament-radio" value="existing-title-tournament-radio" name="title-tournament-selection" checked>
+                                <label for="existing-title-tournament-radio">Existing tournament</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-title-tournament-radio" value="new-title-tournament-year-radio" name="title-tournament-selection">
+                                <label for="new-title-tournament-year-radio">New tournament</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-title-existing-tournament">
+                            <label for="modal-title-select-tournament">Select tournament:</label>
+                            <select id="modal-title-select-tournament" class="dropdown-select">
+                            </select>
+                        </div>
+                        
+                        <div id="modal-form-title-new-tournament">
+                            <input type="text" placeholder="Fill new tournament name..." id="modal-form-title-new-tournament-name">
+                            <input type="file" name="title-image-file" id="modal-form-title-image-upload" class="modal-form-image-upload" accept="image/*">
+                            <label for="modal-form-title-image-upload" id="modal-form-title-image-label">Upload image...</label>
+                        </div>
+
+                        <div class="modal-form-buttons">
+                            <input type="submit" value="Submit" class="modal-form-button">
+                            <input type="button" value="Close" class="modal-form-button" id="titles-close-button">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+
+            <!-- Ένα αναδυόμενο παράθυρο το οποίο εμφανίζεται πατώντας το κουμπί προσθήκης αγώνα -->
+            <aside id="matches-addition-modal" class="modal">
+                <section class="modal-content">
+                    <h1>Add a new match</h1>
+                    <form id="match-addition-form" class="modal-form">
+                        <div class="modal-form-date"> 
+                            <label for="modal-form-date">Match Date:</label>
+                            <input type="date" id="modal-form-date" placeholder="Fill match date..." required>
+                        </div>
+
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-tournament-radio" value="existing-tournament-radio" name="tournament-selection" checked>
+                                <label for="existing-tournament-radio">Existing tournament</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-tournament" value="new-tournament" name="tournament-selection">
+                                <label for="new-tournament">New tournament</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-existing-tournament">
+                            <label for="modal-tournament-select">Select tournament:</label>
+                            <select id="modal-tournament-select" class="dropdown-select">
+                            </select>
+                        </div>
+                        
+                        <div id="modal-form-new-tournament">
+                            <input type="text" placeholder="Fill new tournament name..." id="modal-form-new-tournament-name">
+                            <input type="file" name="match-image-file" id="modal-form-image-upload" class="modal-form-image-upload" accept="image/*">
+                            <label for="modal-form-image-upload" id="modal-form-image-label">Upload image...</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="modal-form-canceled-tournament">
+                            <label for="modal-form-canceled-tournament">Cancelled</label>
+                        </div>
+                        
+                        <div class="modal-form-opponents-groups">
+                            <div class="modal-form-opponents-group">
+                                <p>Opponent A</p>
+                                <input type="text" placeholder="Nadal R." disabled>
+                                <input type="text" id="modal-form-opponentA-points" placeholder="Fill match points... (4 5 1)" required>
+                                <input type="number" min="0" id="modal-form-opponentA-result" placeholder="Fill final result..." required>
+                                <div>
+                                    <input type="radio" name="result" id="modal-form-nadal-winner-radio" checked>
+                                    <label for="modal-form-nadal-winner-radio">Winner</label>
+                                </div>
+                            </div>
+                            <div class="modal-form-opponents-group">
+                                <p>Opponent B</p>
+                                <input type="text" id="modal-form-opponentB-name" placeholder="Fill oponnents name..." required>
+                                <input type="text" id="modal-form-opponentB-points" placeholder="Fill match points... (4 5 1)" required>
+                                <input type="number" min="0" id="modal-form-opponentB-result" placeholder="Fill final result..." required>
+                                <div>
+                                    <input type="radio" name="result" id="modal-form-nadal-notwinner-radio">
+                                    <label for="modal-form-nadal-notwinner-radio">Winner</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="text" placeholder="Fill the match link..." id="modal-form-match-link" required>
+                        <div class="modal-form-buttons">
+                            <input type="submit" value="Submit" class="modal-form-button">
+                            <input type="button" value="Close" class="modal-form-button" id="matches-close-button">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+            
         </main>
     </body>
 </html>
