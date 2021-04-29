@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile page</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="css/profile-page.css">
+        <link rel="stylesheet" href="css/yearpicker.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/profile-page.js" defer></script>
+        <script src="js/yearpicker.js"></script>
+        <script src="https://kit.fontawesome.com/a393b2b1d0.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Η κεφαλίδα με την φωτογραφία, τα στοιχεία και τα social media του αθλητή -->
+        <header>
+            <!-- Η φωτογραφία του αθλητή -->
+            <figure class="profile_figure">
+                <img src="" id="player-profile-image" alt="Nadal's picture">
+                <figcaption></figcaption>
+            </figure>
+
+            <!-- Οι προσωπικές πληροφορίες του αθλητή -->
+            <div id="personal_data">
+                <ul class="personal-info-list">
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Nationality</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Birthplace</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Rank (PTS)</p>
+                    </li>
+                </ul>
+                <ul class="personal-info-list">
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Height</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Weight</p>
+                    </li>
+                    <li class="personal-info-item">
+                        <p></p>
+                        <p>Age</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Τα κοινωνικά δίκτυα του αθλητή -->
+            <ul id="social">
+                <li id="facebook" class="social-info-item">
+                    <a href="" target="_blank"><img src="assets/profile/facebook.png" alt="facebook" class="icon"></a>
+                    <p>14m</p>
+                </li>
+                <li id="instagram" class="social-info-item">
+                    <a href="" target="_blank"><img src="assets/profile/instagram.png" alt="instagram" class="icon"></a>
+                    <p>10m</p>
+                </li>
+                <li id="twitter" class="social-info-item">
+                    <a href="" target="_blank"><img src="assets/profile/twitter.png" alt="twitter" class="icon"></a>
+                    <p>15m</p>
+                </dliiv>
+            </ul>
+        </header>
+
+        <!-- Το κυρίως περιεχόμενο με τα στατιστικά, τους αγώνες και τους τίτλους -->
+        <main>
+            <!-- Τα στατιστικά της καρίερας του αθλητή -->
+            <section id="statistics">
+                <h1 class="section-header">Statistics</h1>
+
+                <select id="stats-table-content-select" class="dropdown-select">
+                </select>
+
+                <div id="statistics-filter-check-list" class="dropdown-check-list">
+                    <button id="" class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
+                    <button class="action-button"><i class="fa fa-plus"></i></button>
+                    <ul id="statistics-filter-service-dropdown-items">
+                        <h1>Service</h1>
+                    </ul>
+                    <ul id="statistics-filter-return-dropdown-items">
+                        <h1>Return</h1>
+                    </ul>
+                </div>
+
+                <table id="first-stats-table">
+                   <thead>
+                        <tr class="stats-table-header">
+                            <th>Singles Service Record</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="warning-message-td">No service records added yet...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="stats-separator"></div>
+
+                <table id="second-stats-table">
+                    <thead>
+                        <tr class="stats-table-header">
+                            <th>Singles Return Record</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="warning-message-td">No return records added yet...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </section>
+
+            <!-- Τα στοιχεία των πρόσφατων αγώνων του αθλητή -->
+            <section id="matches">
+                <h1 class="section-header">Matches</h1>
+
+                <p class="warning-message-paragraph">No matches added yet...</p>
+
+                <div id="matches-filter-check-list" class="dropdown-check-list">
+                    <button class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
+                    <button class="action-button"><i class="fa fa-plus"></i></button>
+                    <ul id="matches-filter-dropdown-items">
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Οι τίτλοι που έχει κατακτήσει ο αθλητής -->
+            <section id="titles">
+                <h1 class="section-header">Titles</h1>
+
+                <div id="titles-filter-check-list" class="dropdown-check-list">
+                    <button class="action-button"><i class="fa fa-sort-amount-down-alt"></i></button>
+                    <button class="action-button"><i class="fa fa-plus"></i></button>
+                    <ul id="titles-filter-dropdown-items">
+                    </ul>
+                </div>
+
+                <select id="tiles-table-sortby-select" class="dropdown-select">
+                    <option value="year-desc">Year Desc</option>
+                    <option value="year-asc">Year Asc</option>
+                    <option value="titles-desc">Titles Desc</option>
+                    <option value="titles-asc">Titles Asc</option>
+                </select>
+
+                <p class="warning-message-paragraph">No titles added yet...</p>
+
+                <table id="titles-table">
+                </table>
+            </section>
+
+            <!-- Ένα αναδυόμενο παράθυρο το οποίο εμφανίζεται πατώντας το κουμπί προσθήκης στατιστικών -->
+            <aside id="stats-addition-modal" class="modal">
+                <section class="modal-content">
+                    <form id="stats-addition-form" autocomplete="off" class="modal-form modal-content-flex-div">
+                        <div>
+                            <div>
+                                <input type="radio" id="modal-stats-existing-period-radio" name="stats-period-radio" checked>
+                                <label for="modal-stats-existing-period-radio">Existing period</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="modal-stats-new-period-radio" name="stats-period-radio">
+                                <label for="modal-stats-new-period-radio">New period</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="modal-stats-period-select">Select period:</label>
+                            <select name="modal-stats-period-select" id="modal-stats-period-select" class="dropdown-select">
+                            </select>
+                        </div>
+
+                        <div>
+                            <input type="number" id="modal-stats-new-period-name" name="modal-stats-new-period-value" placeholder="Fill new period value..." >
+                        </div>
+
+                        <div>
+                            <div>
+                                <input type="radio" id="modal-stats-service-record-radio" name="stats-record-radio" checked>
+                                <label for="modal-stats-service-record-radio">Service record</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="stats-record-radio">
+                                <label for="modal-stats-return-record-radio">Return record</label>
+                            </div>
+                        </div>
+
+                        <div class="input-field-container">
+                            <input type="text" id="modal-stats-new-record-name" placeholder="Fill record name..." required>
+                            <input type="number" id="modal-stats-new-record-value" placeholder="Fill record value..." required>
+                        </div>
+
+                        <div class="modal-form-buttons modal-content-flex-div">
+                            <input type="submit" value="Submit" class="modal-form-button">
+                            <input type="button" value="Close" class="modal-form-button" id="statistics-close-button">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+
+            <!-- Ένα αναδυόμενο παράθυρο το οποίο εμφανίζεται πατώντας το κουμπί προσθήκης αγώνα -->
+            <aside id="matches-addition-modal" class="modal">
+                <section class="modal-content">
+                    <h1>Add a new match</h1>
+                    <form id="match-addition-form" autocomplete="off" class="modal-form modal-content-flex-div">
+                        <div class="modal-form-date-div"> 
+                            <label for="modal-form-date">Match Date:</label>
+                            <input type="date" id="modal-form-date" name="modal-form-date" placeholder="Fill match date..." required>
+                        </div>
+
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-tournament-radio" name="tournament-type-radio" checked>
+                                <label for="existing-tournament-radio">Existing tournament</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-tournament" name="tournament-type-radio">
+                                <label for="new-tournament">New tournament</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-existing-tournament" class="modal-content-flex-div">
+                            <label for="modal-tournament-select">Select tournament:</label>
+                            <select name="modal-tournament-select" id="modal-tournament-select" class="dropdown-select">
+                            </select>
+                        </div>
+                        
+                        <div id="modal-form-new-tournament">
+                            <input type="text" name="modal-form-new-tournament-name" placeholder="Fill new tournament name..." >
+                            <input type="file" id="modal-form-image-upload" name="modal-form-image-upload" accept="image/*" class="modal-form-image-upload" >
+                            <label for="modal-form-image-upload" id="modal-form-image-label">Upload image...</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="modal-form-canceled-tournament" name="modal-form-canceled-tournament">
+                            <label for="modal-form-canceled-tournament">Cancelled</label>
+                        </div>
+                        
+                        <div class="modal-form-opponents-groups">
+                            <div class="modal-form-opponents-group modal-content-flex-div">
+                                <p>Opponent A</p>
+                                <input type="text" placeholder="Nadal R." disabled>
+                                <input type="text" name="modal-form-opponentA-points" placeholder="Fill match points... (4 5 1)" required>
+                                <input type="number" min="0" name="modal-form-opponentA-result" placeholder="Fill final result..." required>
+                                <div>
+                                    <input type="radio" id="modal-form-nadal-winner-radio" name="match-winner-radio" checked>
+                                    <label for="modal-form-nadal-winner-radio">Winner</label>
+                                </div>
+                            </div>
+                            <div class="modal-form-opponents-group modal-content-flex-div">
+                                <p>Opponent B</p>
+                                <input type="text" name="modal-form-opponentB-name" placeholder="Fill oponnents name..." required>
+                                <input type="text" name="modal-form-opponentB-points" placeholder="Fill match points... (4 5 1)" required>
+                                <input type="number" min="0" name="modal-form-opponentB-result" placeholder="Fill final result..." required>
+                                <div>
+                                    <input type="radio" id="modal-form-nadal-notwinner-radio" name="match-winner-radio">
+                                    <label for="modal-form-nadal-notwinner-radio">Winner</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="text" placeholder="Fill the match link..." name="modal-form-match-link" required>
+                        <div class="modal-form-buttons modal-content-flex-div">
+                            <input type="submit" value="Submit" class="modal-form-button">
+                            <input type="button" value="Close" class="modal-form-button" name="matches-close-button">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+
+             <!-- Ένα αναδυόμενο παράθυρο το οποίο εμφανίζεται πατώντας το κουμπί προσθήκης τίτλου -->
+             <aside id="titles-addition-modal" class="modal">
+                <section class="modal-content">
+                    <h1>Add a new title</h1>
+                    <form id="title-addition-form" autocomplete="off" class="modal-form modal-content-flex-div">
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-title-year-radio" name="title-year-selection" checked>
+                                <label for="existing-title-year-radio">Existing year</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-title-year-radio" name="title-year-selection">
+                                <label for="new-title-year-radio">New year</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-existing-year" class="modal-content-flex-div">
+                            <label for="modal-title-select-year">Select year:</label>
+                            <select id="modal-title-select-year" class="dropdown-select">
+                            </select>
+                        </div>
+
+                        <div>
+                            <input type="text" class="yearpicker" value="" id="modal-form-title-new-year" placeholder="Fill new year...">
+                        </div>
+
+                        <div class="modal-form-tournament-selection">
+                            <div>
+                                <input type="radio" id="existing-title-tournament-radio" name="title-tournament-selection" checked>
+                                <label for="existing-title-tournament-radio">Existing tournament</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="new-title-tournament-radio" name="title-tournament-selection">
+                                <label for="new-title-tournament-year-radio">New tournament</label>
+                            </div>
+                        </div>
+
+                        <div id="modal-form-title-existing-tournament" class="modal-content-flex-div">
+                            <label for="modal-title-select-tournament">Select tournament:</label>
+                            <select id="modal-title-select-tournament" class="dropdown-select">
+                            </select>
+                        </div>
+                        
+                        <div id="modal-form-title-new-tournament">
+                            <input type="text" placeholder="Fill new tournament name..." id="modal-form-title-new-tournament-name">
+                            <input type="file" name="title-image-file" id="modal-form-title-image-upload" class="modal-form-image-upload" accept="image/*">
+                            <label for="modal-form-title-image-upload" id="modal-form-title-image-label">Upload image...</label>
+                        </div>
+
+                        <div class="modal-form-buttons modal-content-flex-div">
+                            <input type="submit" value="Submit" class="modal-form-button">
+                            <input type="button" value="Close" class="modal-form-button" id="titles-close-button">
+                        </div>
+                    </form>
+                </section>
+            </aside>
+            
+        </main>
+    </body>
+</html>
