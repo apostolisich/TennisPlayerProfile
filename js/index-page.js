@@ -16,6 +16,13 @@ existingProfilesList.addEventListener('click', (event) => {
     }
 });
 
+//Ένας event listener που "ακούει" για κλικ στο κουμπί διαγραφής όλων των υπάρχοντων προφίλ
+document.getElementById('delete-profiles-button').addEventListener('click', () => {
+    localStorage.removeItem(imagesStorageKey);
+    localStorage.removeItem(profilesStorageKey);
+    location.reload();
+});
+
 buildAlreadyExistingProfilesList();
 
 //Ένας event listener που "ακούει" για φόρτωση εικόνων του αθλητή
@@ -26,12 +33,6 @@ playerImage.addEventListener('change', () => {
     let i = document.createElement('i');
     i.className = 'fa fa-upload upload-icon';
     imageLabel.prepend(i);
-});
-
-document.getElementById('delete-profiles-button').addEventListener('click', () => {
-    localStorage.removeItem(imagesStorageKey);
-    localStorage.removeItem(profilesStorageKey);
-    location.reload();
 });
 
 //Ένας event listener που "ακούει" για υποβολές στη φόρμα δημιουργίας παίκτη

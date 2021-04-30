@@ -221,7 +221,7 @@ function fillMatchesTableData(tableData, isForFiltering, checkBoxesData) {
 function shouldMatchBeFiltered(match, checkboxes) {
     let filter = true;
     checkboxes.forEach( checkbox => {
-        if(match.winner[0] == checkbox.value || match.loser[0] == checkbox.value) {
+        if(match.opponentA[0] == checkbox.value || match.opponentB[0] == checkbox.value) {
             filter =  false;
         }
     });
@@ -803,7 +803,7 @@ function statsFilteringFor(checkBoxElement, tableDataId, isService) {
     }
 };
 
-//Ένας event listener που "ακούει" για κλικ που γίνονται στα checkboxes που φιλτραρουν τους τίτλους
+//Ένας event listener που "ακούει" για κλικ που γίνονται στα checkboxes που φιλτραρουν τους αγώνες
 document.getElementById('matches-filter-dropdown-items').addEventListener('click', event => {
     let checkBoxes = document.getElementById('matches-filter-dropdown-items').querySelectorAll('input[type=checkbox]:checked');
     if(checkBoxes.length != 0) {
@@ -811,7 +811,7 @@ document.getElementById('matches-filter-dropdown-items').addEventListener('click
             let found = false;
             matchObject.matches.forEach( matchEntry => {
                 checkBoxes.forEach( checkBox => {
-                    if(checkBox.value == matchEntry.winner[0] || checkBox.value == matchEntry.loser[0]) {
+                    if(checkBox.value == matchEntry.opponentA[0] || checkBox.value == matchEntry.opponentB[0]) {
                         found = true;
                     }
                 });
