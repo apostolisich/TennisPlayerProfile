@@ -233,8 +233,8 @@ function shouldMatchBeFiltered(match, checkboxes) {
 function fillDivContainer(container, match, dataIndex) {
     let containerP1 = document.createElement('p');
     let containerP2 = document.createElement('p');
-    containerP1.innerHTML = match.winner[dataIndex];
-    containerP2.innerHTML = match.loser[dataIndex];
+    containerP1.innerHTML = match.opponentA[dataIndex];
+    containerP2.innerHTML = match.opponentB[dataIndex];
 
     if(match.status == "Cancelled") {
         containerP1.classList.add('match-loser');
@@ -388,11 +388,11 @@ function getFilterValuesForTitlesTableData(tableData, filterValues) {
 function filterMatchesTableData(tableData, filterValues) {
     tableData.forEach( matchObject => {
         matchObject.matches.forEach( matchEntry => {
-            if(!filterValues.some(item => (item[0] == matchEntry.winner[0] || item[0] == matchEntry.loser[0]))) {
-                if(matchEntry.winner[0] == "Nadal R.") {
-                    filterValues.push([matchEntry.loser[0], matchEntry.loser[0]]);
+            if(!filterValues.some(item => (item[0] == matchEntry.opponentA[0] || item[0] == matchEntry.opponentB[0]))) {
+                if(matchEntry.opponentA[0] == storedPlayerProfile.personalInfo.playerName + " " + storedPlayerProfile.personalInfo.playerSurname) {
+                    filterValues.push([matchEntry.opponentB[0], matchEntry.opponentB[0]]);
                 } else {
-                    filterValues.push([matchEntry.winner[0], matchEntry.winner[0]]);
+                    filterValues.push([matchEntry.opponentA[0], matchEntry.opponentA[0]]);
                 }
             }
         });
@@ -578,6 +578,7 @@ statisticsAdditionForm.addEventListener('submit', (event) => {
     store(profilesStorageKey, storedProfiles);
 
     statisticsAdditionForm.reset();
+    fillStatsPeriodSelect('stats-table-content-select');
     let selectedCareerPeriodFromDropdown = document.getElementById('stats-table-content-select').value;
     fillStatsTableData(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesServiceRecordData, 'first-stats-table');
     fillStatsTableData(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesReturnRecordData, 'second-stats-table');
@@ -868,6 +869,7 @@ matchesActionButtons[0].addEventListener('click', function () {
 matchesActionButtons[1].addEventListener('click', function () {
     fillExistingTournamentsDropdown(true);
     matchesAdditionModal.style.display = "block";
+    matchAdditionForm.elements.namedItem('modal-form-opponentA-name').setAttribute('placeholder', storedPlayerProfile.personalInfo.playerName + " " + storedPlayerProfile.personalInfo.playerSurname);
     matchesExistingTournamentSelect.setAttribute('required', '');
 });
 
@@ -1016,25 +1018,26 @@ function createNewMatchObject() {
     let opponentBPoints = matchAdditionForm.elements.namedItem('modal-form-opponentB-points').value.trim();
     let opponentBResult = matchAdditionForm.elements.namedItem('modal-form-opponentB-result').value.trim();
 
+    let playerName = storedPlayerProfile.personalInfo.playerName + " " + storedPlayerProfile.personalInfo.playerSurname;
     if(document.getElementById('modal-form-canceled-tournament').checked) {
         newMatchObject.status = "Cancelled";
         newMatchObject.result_img = MatchResultIcons.CANCELLED;
 
-        newMatchObject.winner = [ "Nadal R." ];
-        newMatchObject.loser = [ opponentBName ];
+        newMatchObject.opponentA = [ playerName ];
+        newMatchObject.opponentB = [ opponentBName ];
     } else {
-        let isNadalWinner = matchAdditionForm.elements.namedItem('modal-form-nadal-winner-radio').checked;
-        newMatchObject.result_img = isNadalWinner ? MatchResultIcons.WIN : MatchResultIcons.DEFEAT;
+        let isOpponentAWinner = matchAdditionForm.elements.namedItem('modal-form-opponentA-winner-radio').checked;
+        newMatchObject.result_img = isOpponentAWinner ? MatchResultIcons.WIN : MatchResultIcons.DEFEAT;
 
         newMatchObject.status = "FT";
         newMatchObject.winnerFirst = false;
 
-        if(isNadalWinner) {
-            newMatchObject.winner = [ "Nadal R.", opponentAPoints, opponentAResult];
-            newMatchObject.loser = [ opponentBName, opponentBPoints, opponentBResult];
+        if(isOpponentAWinner) {
+            newMatchObject.opponentA = [ playerName, opponentAPoints, opponentAResult];
+            newMatchObject.opponentB = [ opponentBName, opponentBPoints, opponentBResult];
         } else {
-            newMatchObject.loser = [ "Nadal R.", opponentAPoints, opponentAResult];
-            newMatchObject.winner = [ opponentBName, opponentBPoints, opponentBResult];
+            newMatchObject.opponentB = [ playerName, opponentAPoints, opponentAResult];
+            newMatchObject.opponentA = [ opponentBName, opponentBPoints, opponentBResult];
         }
     }
 
