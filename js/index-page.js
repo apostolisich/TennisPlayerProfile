@@ -28,6 +28,12 @@ playerImage.addEventListener('change', () => {
     imageLabel.prepend(i);
 });
 
+document.getElementById('delete-profiles-button').addEventListener('click', () => {
+    localStorage.removeItem(imagesStorageKey);
+    localStorage.removeItem(profilesStorageKey);
+    location.reload();
+});
+
 //Ένας event listener που "ακούει" για υποβολές στη φόρμα δημιουργίας παίκτη
 const profileForm = document.getElementById('profile-create-form');
 profileForm.addEventListener('submit', (event) => {

@@ -82,6 +82,7 @@ ul li {
 }
 
 .form-button {
+    width: 100%;
     background-color: rgb(64, 64, 64);
     border: 1px solid rgb(64, 64, 64);
     border-radius: 3px;
