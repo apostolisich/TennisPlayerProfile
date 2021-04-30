@@ -17,6 +17,9 @@ let storedProfiles = retrievedStorageData[0];
 let storedImages = retrievedStorageData[1];
 let storedPlayerProfile = storedProfiles[storedPlayerKey];
 let storedPlayerImages = storedImages[storedPlayerKey];
+let storedPlayerProfileStatsTableData = storedPlayerProfile.statsTableData;
+let storedPlayerProfileMatchesTableData = storedPlayerProfile.matchesTableData;
+let storedPlayerProfileTitlesTableData = storedPlayerProfile.titlesTableData;
 
 const titleImageReader = initializeTitleImageFileReader();
 const matchImageReader = initializeMatchImageFileReader();
@@ -27,14 +30,14 @@ $('.yearpicker').yearpicker();
 //Κλήση των συναρτήσεων που απαιτούνται για το αρχικό "γέμισμα" των HTML στοιχείων
 fillHeaderData();
 fillStatsPeriodSelect('stats-table-content-select');
-fillStatsTableData(storedPlayerProfile.statsTableData.Career.singlesServiceRecordData, 'first-stats-table');
-fillStatsTableData(storedPlayerProfile.statsTableData.Career.singlesReturnRecordData, 'second-stats-table');
-fillMatchesTableData(storedPlayerProfile.matchesTableData, false, null);
-fillTitlesTableData(storedPlayerProfile.titlesTableData, false, null);
-generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData.Career.singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
-generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData.Career.singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
-generateAvailableFilterValuesFor(storedPlayerProfile.matchesTableData, 'matches-filter-dropdown-items', 'matches');
-generateAvailableFilterValuesFor(storedPlayerProfile.titlesTableData, 'titles-filter-dropdown-items', 'titles');
+fillStatsTableData(storedPlayerProfileStatsTableData.Career.singlesServiceRecordData, 'first-stats-table');
+fillStatsTableData(storedPlayerProfileStatsTableData.Career.singlesReturnRecordData, 'second-stats-table');
+fillMatchesTableData(storedPlayerProfileMatchesTableData, false, null);
+fillTitlesTableData(storedPlayerProfileTitlesTableData, false, null);
+generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData.Career.singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
+generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData.Career.singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
+generateAvailableFilterValuesFor(storedPlayerProfileMatchesTableData, 'matches-filter-dropdown-items', 'matches');
+generateAvailableFilterValuesFor(storedPlayerProfileTitlesTableData, 'titles-filter-dropdown-items', 'titles');
 
 //Μία συνάρτηση η οποία δημιουργεί ένα αντικείμενο τύπου reader, το οποίο θα διαβάζει και θα αποθηκεύει κατάλληλα τις
 //φωτογραφίες των τουρνουά αγώνων τα οποία έχει κατακτήσει ο αθλητής
@@ -54,7 +57,6 @@ function initializeTitleImageFileReader() {
 function initializeMatchImageFileReader() {
     let reader = new FileReader();
     reader.onload = function(e) {
-        //storedPlayerImages.matchImages.push([tournamentName, e.target.result]);
         storedPlayerImages.matchImages.push([this.tournamentName, e.target.result]);
         storedImages[storedPlayerKey] = storedPlayerImages;
         store(imagesStorageKey, storedImages);
@@ -90,10 +92,6 @@ function fillHeaderData() {
 
 //Γεμίζει το HTML table που έχει το δοσμένο tableId με τα δοσμένα δεδομένα (data)
 function fillStatsTableData(data, tableId) {
-    if(data.length == 0) {
-        return;
-    }
-
     let table = document.getElementById(tableId);
     let tableTBody = table.getElementsByTagName('tbody')
     if(tableTBody.length != 0) {
@@ -101,6 +99,16 @@ function fillStatsTableData(data, tableId) {
     }
 
     let tbody = document.createElement('tbody');
+    if(data.length == 0) {
+        let row = tbody.insertRow();
+        let col = row.insertCell(0);
+        col.classList.add('warning-message-td');
+        col.innerHTML = "No stat records added yet...";
+        table.appendChild(tbody);
+        
+        return;
+    }
+
     data.forEach( item => {
         let row = tbody.insertRow();
         let date = row.insertCell(0);
@@ -124,12 +132,12 @@ function fillMatchesTableData(tableData, isForFiltering, checkBoxesData) {
 
         tableData.forEach( item => {
             item.matches.sort((matchA, matchB) => {
-                    let matchASplitDate = matchA.date.split("/");
-                    let matchBSplitDate = matchB.date.split("/");
-                    let aDate = new Date(matchASplitDate[2], matchASplitDate[1], matchASplitDate[0]);
-                    let bDate = new Date(matchBSplitDate[2], matchBSplitDate[1], matchBSplitDate[0])
+                let matchASplitDate = matchA.date.split("/");
+                let matchBSplitDate = matchB.date.split("/");
+                let aDate = new Date(matchASplitDate[2], matchASplitDate[1], matchASplitDate[0]);
+                let bDate = new Date(matchBSplitDate[2], matchBSplitDate[1], matchBSplitDate[0])
 
-                    return bDate - aDate;
+                return bDate - aDate;
             });
 
             let tableContainer = document.createElement('div');
@@ -149,7 +157,6 @@ function fillMatchesTableData(tableData, isForFiltering, checkBoxesData) {
                 img.src = item.header.image;
             }
 
-            //img.src = item.header.image;
             img.alt = item.header.title;
             img.classList.add('icon');
             let p = document.createElement('p');
@@ -256,8 +263,9 @@ function fillTitlesTableData(data, isForFiltering, checkBoxesData, isFromSorting
             table.innerHTML = "";
         }
 
-        if(!isFromSorting)
+        if(!isFromSorting) {
             data.sort(titlesYearDescCompare);
+        }
 
         data.forEach( dataItem => {
             let row = table.insertRow();
@@ -286,7 +294,6 @@ function fillTitlesTableData(data, isForFiltering, checkBoxesData, isFromSorting
                     img.src = title[1];
                 }
 
-                //img.src = title[1];
                 img.alt = title[0];
                 img.classList.add('icon');
                 let p = document.createElement('p');
@@ -300,6 +307,7 @@ function fillTitlesTableData(data, isForFiltering, checkBoxesData, isFromSorting
             count.innerHTML = row.querySelectorAll('.title-entry').length;
         });
 
+        table.style.display = "table";
         document.getElementById('titles').childNodes[7].style.display = "none";
     } else {
         table.style.display = "none";
@@ -411,29 +419,29 @@ function stringAscCompare(string1, string2) {
 //Ένας event listener ο οποίος "ακούει" για αλλαγές της περιόδου στον πίνακα με τα στατιστικά
 document.getElementById('stats-table-content-select').addEventListener('change', event => {
     let selectedValue = event.target.value;
-    fillStatsTableData(storedPlayerProfile.statsTableData[selectedValue].singlesServiceRecordData, 'first-stats-table');
-    fillStatsTableData(storedPlayerProfile.statsTableData[selectedValue].singlesReturnRecordData, 'second-stats-table');
-    generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData[selectedValue].singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
-    generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData[selectedValue].singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
+    fillStatsTableData(storedPlayerProfileStatsTableData[selectedValue].singlesServiceRecordData, 'first-stats-table');
+    fillStatsTableData(storedPlayerProfileStatsTableData[selectedValue].singlesReturnRecordData, 'second-stats-table');
+    generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData[selectedValue].singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
+    generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData[selectedValue].singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
 });
 
 //Ένας event listener ο οποίο "ακούει" για αλλαγές στον τρόπο ταξινόμησης του πίνακα με τους τίτλους
 document.getElementById('tiles-table-sortby-select').addEventListener('change', event => {
     switch(event.target.value) {
         case "year-desc":
-            storedPlayerProfile.titlesTableData.sort(titlesYearDescCompare);
+            storedPlayerProfileTitlesTableData.sort(titlesYearDescCompare);
             break;
         case "year-asc":
-            storedPlayerProfile.titlesTableData.sort(titlesYearAscCompare);
+            storedPlayerProfileTitlesTableData.sort(titlesYearAscCompare);
             break;
         case "titles-desc":
-            storedPlayerProfile.titlesTableData.sort(titlesCountDescCompare);
+            storedPlayerProfileTitlesTableData.sort(titlesCountDescCompare);
             break;
         case "titles-asc":
-            storedPlayerProfile.titlesTableData.sort(titlesCountAscCompare);
+            storedPlayerProfileTitlesTableData.sort(titlesCountAscCompare);
             break;
     }
-    fillTitlesTableData(storedPlayerProfile.titlesTableData, false, null, true);
+    fillTitlesTableData(storedPlayerProfileTitlesTableData, false, null, true);
 });
 
 //Μια βοηθητική συνάρτηση που λειτουργεί ως comparator για φθίνουσα διάταξη ως προς το έτος συμμετοχής
@@ -543,6 +551,13 @@ statisticsAdditionForm.addEventListener('submit', (event) => {
         periodName = document.getElementById('modal-stats-new-period-name').value.trim();
     }
 
+    if(!storedPlayerProfileStatsTableData.hasOwnProperty(periodName)) {
+        storedPlayerProfileStatsTableData[periodName] = {
+            singlesServiceRecordData: [],
+            singlesReturnRecordData: []
+        }
+    }
+
     let serviceRecordRadio = document.getElementById('modal-stats-service-record-radio');
     let isServiceRecord = serviceRecordRadio.checked ? true : false;
     let recordName = document.getElementById('modal-stats-new-record-name').value.trim();
@@ -554,18 +569,20 @@ statisticsAdditionForm.addEventListener('submit', (event) => {
     }
 
     if(isServiceRecord) {
-        storedPlayerProfile.statsTableData[periodName].singlesServiceRecordData.push(recordObject);
+        storedPlayerProfileStatsTableData[periodName].singlesServiceRecordData.push(recordObject);
     } else {
-        storedPlayerProfile.statsTableData[periodName].singlesReturnRecordData.push(recordObject);
+        storedPlayerProfileStatsTableData[periodName].singlesReturnRecordData.push(recordObject);
     }
 
     storedProfiles[storedPlayerKey] = storedPlayerProfile;
     store(profilesStorageKey, storedProfiles);
 
-    fillStatsTableData(storedPlayerProfile.statsTableData[periodName].singlesServiceRecordData, 'first-stats-table');
-    fillStatsTableData(storedPlayerProfile.statsTableData[periodName].singlesReturnRecordData, 'second-stats-table');
-    generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData[periodName].singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
-    generateAvailableFilterValuesFor(storedPlayerProfile.statsTableData[periodName].singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
+    statisticsAdditionForm.reset();
+    let selectedCareerPeriodFromDropdown = document.getElementById('stats-table-content-select').value;
+    fillStatsTableData(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesServiceRecordData, 'first-stats-table');
+    fillStatsTableData(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesReturnRecordData, 'second-stats-table');
+    generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesServiceRecordData, 'statistics-filter-service-dropdown-items', 'statistics');
+    generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData[selectedCareerPeriodFromDropdown].singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
     showHideElements(statisticsAdditionForm.childNodes[5], statisticsAdditionForm.childNodes[3]);
     serviceRecordRadio.checked = true;
     statisticsAdditionFormExistingPeriodRadio.checked = true;
@@ -575,7 +592,11 @@ statisticsAdditionForm.addEventListener('submit', (event) => {
 //Μια βοηθητική συνάρτηση η οποία "γεμίζει" το δοσμένο HTML element με τις διαθέσιμες επιλογές περιόδου στατιστικών
 function fillStatsPeriodSelect(elementName) {
     let htmlElement = document.getElementById(elementName);
-    let statsData = storedPlayerProfile.statsTableData;
+    htmlElement.querySelectorAll('option').forEach(child => {
+        htmlElement.removeChild(child);
+    });
+
+    let statsData = storedPlayerProfileStatsTableData;
     Object.keys(statsData).forEach( key => {
         let option = document.createElement('option');
         option.value = key;
@@ -631,7 +652,7 @@ function fillExistingYearsDropdown() {
     });
 
     let availableTitles = [];
-    storedPlayerProfile.titlesTableData.forEach( entry => {
+    storedPlayerProfileTitlesTableData.forEach( entry => {
         availableTitles.push(entry.year);
     });
 
@@ -680,13 +701,14 @@ titlesAdditionForm.addEventListener('submit', event => {
     if(existingYearRadio.checked) {
         yearValue = titleAdditionFormYearSelect.value;
         let existingTitleObject;
-        storedPlayerProfile.titlesTableData.forEach( item => {
+        storedPlayerProfileTitlesTableData.forEach( item => {
             if(item.year == yearValue) {
                 existingTitleObject = item;
                 return;
             }
         });
 
+        existingTitleObject.count++;
         let titlesArray = createNewTitleArray();
         existingTitleObject.titles.push(titlesArray);
     } else {
@@ -698,23 +720,23 @@ titlesAdditionForm.addEventListener('submit', event => {
 
         let titlesArray = createNewTitleArray();
         newTitlesTableEntry.titles = [titlesArray];
-        storedPlayerProfile.titlesTableData.push(newTitlesTableEntry);
+        storedPlayerProfileTitlesTableData.push(newTitlesTableEntry);
         storedProfiles[storedPlayerKey] = storedPlayerProfile; 
     }
 
     store(profilesStorageKey, storedProfiles);
 
-    storedPlayerProfile.titlesTableData.sort(titlesYearDescCompare);
     titlesAdditionForm.reset();
     titlesAdditionModal.style.display = "none";
-    document.getElementById('modal-form-title-image-label').textContent = "Upload image...";
     titleAdditionFormYearSelect.removeAttribute('required');
+    document.getElementById('modal-form-title-image-label').textContent = "Upload image...";
     document.getElementById('modal-form-title-new-year').removeAttribute('required');
     document.getElementById('modal-form-title-new-tournament-name').removeAttribute('required');
-    fillTitlesTableData(storedPlayerProfile.titlesTableData, false, null);
+    storedPlayerProfileTitlesTableData.sort(titlesYearDescCompare);
+    fillTitlesTableData(storedPlayerProfileTitlesTableData, false, null, false);
     showHideElements(titlesAdditionFormNewYear, titlesAdditionFormExistingYear);
     showHideElements(titlesAdditionFormNewTournament, titlesAdditionFormExistingTournament);
-    generateAvailableFilterValuesFor(storedPlayerProfile.titlesTableData, 'titles-filter-dropdown-items', 'titles');
+    generateAvailableFilterValuesFor(storedPlayerProfileTitlesTableData, 'titles-filter-dropdown-items', 'titles');
 });
 
 // Μια συνάρτηση η οποία κατασκευάζει έναν πίνακα που περιέχει τα στοιχεία ενός τίτλου
@@ -761,8 +783,7 @@ document.getElementById('statistics-filter-return-dropdown-items').addEventListe
 function statsFilteringFor(checkBoxElement, tableDataId, isService) {
     let checkBoxes = document.getElementById(checkBoxElement).querySelectorAll('input[type=checkbox]:checked');
     let statsSelectDropdown = document.getElementById('stats-table-content-select');
-    //let recordData = isService ? statsTableData[statsSelectDropdown.value].singlesServiceRecordData : statsTableData[statsSelectDropdown.value].singlesReturnRecordData;
-    let recordData = isService ? storedPlayerProfile.statsTableData[statsSelectDropdown.value].singlesServiceRecordData : storedPlayerProfile.statsTableData[statsSelectDropdown.value].singlesReturnRecordData;
+    let recordData = isService ? storedPlayerProfileStatsTableData[statsSelectDropdown.value].singlesServiceRecordData : storedPlayerProfileStatsTableData[statsSelectDropdown.value].singlesReturnRecordData;
     if(checkBoxes.length != 0) {
         let filteredTableData = recordData.filter( stat => {
             let found = false;
@@ -785,7 +806,7 @@ function statsFilteringFor(checkBoxElement, tableDataId, isService) {
 document.getElementById('matches-filter-dropdown-items').addEventListener('click', event => {
     let checkBoxes = document.getElementById('matches-filter-dropdown-items').querySelectorAll('input[type=checkbox]:checked');
     if(checkBoxes.length != 0) {
-        let filteredTableData = storedPlayerProfile.matchesTableData.filter(matchObject => {
+        let filteredTableData = storedPlayerProfileMatchesTableData.filter(matchObject => {
             let found = false;
             matchObject.matches.forEach( matchEntry => {
                 checkBoxes.forEach( checkBox => {
@@ -800,7 +821,7 @@ document.getElementById('matches-filter-dropdown-items').addEventListener('click
 
         fillMatchesTableData(filteredTableData, true, checkBoxes);
     } else {
-        fillMatchesTableData(storedPlayerProfile.matchesTableData, false, null);
+        fillMatchesTableData(storedPlayerProfileMatchesTableData, false, null);
     }
 });
 
@@ -808,7 +829,7 @@ document.getElementById('matches-filter-dropdown-items').addEventListener('click
 document.getElementById('titles-filter-dropdown-items').addEventListener('click', event => {
     let checkBoxes = document.getElementById('titles-filter-dropdown-items').querySelectorAll('input[type=checkbox]:checked');
     if(checkBoxes.length != 0) {
-        let filteredTableData = storedPlayerProfile.titlesTableData.filter(title => {
+        let filteredTableData = storedPlayerProfileTitlesTableData.filter(title => {
             let found = false;
             title.titles.forEach( titleEntry => {
                 checkBoxes.forEach( checkBox => {
@@ -823,7 +844,7 @@ document.getElementById('titles-filter-dropdown-items').addEventListener('click'
 
         fillTitlesTableData(filteredTableData, true, checkBoxes);
     } else {
-        fillTitlesTableData(storedPlayerProfile.titlesTableData, false, null);
+        fillTitlesTableData(storedPlayerProfileTitlesTableData, false, null);
     }
 });
 
@@ -856,12 +877,12 @@ function fillExistingTournamentsDropdown(isForMatch) {
     let availableTournaments = [];
     if(isForMatch) {
         dropdownMenu = document.getElementById('modal-tournament-select');
-        storedPlayerProfile.matchesTableData.forEach( entry => {
+        storedPlayerProfileMatchesTableData.forEach( entry => {
             availableTournaments.push(entry.header.title);
         });
     } else {
         dropdownMenu = titleAdditionFormTournamentSelect;
-        storedPlayerProfile.titlesTableData.forEach( titlesObject => {
+        storedPlayerProfileTitlesTableData.forEach( titlesObject => {
             titlesObject.titles.forEach( titleEntry => {
                 let titleName = titleEntry[0];
                 if(!availableTournaments.includes(titleName))
@@ -918,7 +939,7 @@ function disableFieldsForCancelledMatch(flag) {
     document.getElementsByClassName('modal-form-opponents-groups')[0].querySelectorAll('input:nth-child(3), input:nth-child(4), input[type="radio"]').forEach( inputElement => {
         inputElement.disabled = flag;
     });
-}
+};
 
 //Ένας event listener που "ακούει" για κλικ στο κουμπί εξόδου από το μενού προσθήκης αγώνων
 matchAdditionForm.elements.namedItem('matches-close-button').addEventListener('click', () => {
@@ -938,7 +959,7 @@ matchAdditionForm.addEventListener('submit', event => {
     let selectedTournamentRadio = document.getElementById('existing-tournament-radio');
     if(selectedTournamentRadio.checked) {
         let existingMatchObject;
-        storedPlayerProfile.matchesTableData.forEach( item => {
+        storedPlayerProfileMatchesTableData.forEach( item => {
             if(item.header.title == matchesExistingTournamentSelect.value) {
                 existingMatchObject = item;
                 return;
@@ -956,7 +977,6 @@ matchAdditionForm.addEventListener('submit', event => {
                 image: URL.createObjectURL(matchesNewTournamentImage.files[0]),
                 title: tournamentName
             }
-
         };
 
         matchImageReader.tournamentName = tournamentName;
@@ -964,8 +984,7 @@ matchAdditionForm.addEventListener('submit', event => {
 
         let newMatchObject = createNewMatchObject();
         newTournament.matches = [newMatchObject];
-        //matchesTableData.push(newTournament);
-        storedPlayerProfile.matchesTableData.push(newTournament);
+        storedPlayerProfileMatchesTableData.push(newTournament);
     }
 
     storedProfiles[storedPlayerKey] = storedPlayerProfile;
@@ -977,9 +996,9 @@ matchAdditionForm.addEventListener('submit', event => {
     matchesNewTournamentName.removeAttribute("required");
     matchesNewTournamentImage.removeAttribute("required");
     disableFieldsForCancelledMatch(false);
-    fillMatchesTableData(storedPlayerProfile.matchesTableData, false, null);
+    fillMatchesTableData(storedPlayerProfileMatchesTableData, false, null);
     showHideElements(newTournamentDiv, existingTournamentDiv)
-    generateAvailableFilterValuesFor(storedPlayerProfile.matchesTableData, 'matches-filter-dropdown-items', 'matches');
+    generateAvailableFilterValuesFor(storedPlayerProfileMatchesTableData, 'matches-filter-dropdown-items', 'matches');
 });
 
 //Μια συνάρτηση η οποία κατασκευάζει ένα αντικείμενο που περιέχει τα στοιχεία ενός αγώνα

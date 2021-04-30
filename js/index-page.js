@@ -1,6 +1,5 @@
 'use strict'
 
-//ΙΣΩΣ ΕΙΝΑΙ ΚΑΛΥΤΕΡΑ ΝΑ ΤΑ ΕΧΩ ΟΛΑ ΣΕ ΕΝΑ ΑΡΧΕΙΟ!!!!!!
 const imagesStorageKey = "TennisImages";
 const profilesStorageKey = "TennisProfiles";
 
@@ -8,6 +7,7 @@ const storedItems = retrieveExistingStoredItems();
 let storedProfiles = storedItems[0];
 let storedImages = storedItems[1];
 
+//Ένας event listener που "ακούει" για κλικ στη λίστα των ήδη υπαρχόντων προφίλ από το localStorage
 const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
     if(event.target && event.target.tagName == "LI") {
