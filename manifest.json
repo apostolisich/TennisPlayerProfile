@@ -1,6 +1,6 @@
 {
     "name": "Rafael Nadal Profile",
-    "short_name": "RafaNadal",
+    "short_name": "TennisPlayerProfile",
     "start_url": "index.html",
     "display": "standalone",
     "background_color": "#fdfdfd",
@@ -8,9 +8,19 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "assets/logo/icon.png",
+            "src": "assets/logo/logo_144.png",
             "type": "image/png",
             "sizes": "144x144"
+        },
+		{
+            "src": "assets/logo/logo_192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+		{
+            "src": "assets/logo/logo_512.png",
+            "type": "image/png",
+            "sizes": "512x512"
         }
     ]
 }
