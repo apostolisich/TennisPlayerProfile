@@ -1056,16 +1056,6 @@ function getParameterByName(name, url = window.location.href) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-//Κώδικας απαραίτητος για την δημιουργία ενός service worker για την σελίδα
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-        navigator.serviceWorker
-        .register("serviceWorker.js")
-        .then(res => console.log("service worker registered"))
-        .catch(err => console.log("service worker not registered", err))
-    });
-};
-
 //Μια συνάρτηση η οποία αποθηκεύει το δοσμένο αντικείμενο με το δοσμένο όνομα στο localStorage
 function store(constName, tableData) {
     localStorage.setItem(constName, JSON.stringify(tableData));
