@@ -43,16 +43,24 @@ self.addEventListener("install", installEvent => {
     );
 });
 
-self.addEventListener("fetch", fetchEvent => {
+/*self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
         caches.match(fetchEvent.request).then(res => {
             return res || fetch(fetchEvent.request);
         })
     );
-});
+});*/
 
-self.clients.matchAll({includeUncontrolled: true}).then(clients => {
-    for (const client of clients) {
-        updateCache(new URL(client.url).href);
-    }
-});
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+      caches.open('mysite-dynamic').then(function(cache) {
+        return cache.match(event.request).then(function(response) {
+          var fetchPromise = fetch(event.request).then(function(networkResponse) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          })
+          return response || fetchPromise;
+        })
+      })
+    );
+  });
