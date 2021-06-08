@@ -1,6 +1,5 @@
 const cacheKey = "tennis-player-profile";
 const assets = [
-    "/",
     "index.html",
 	"profile.html",
     "css/index-page.css",
@@ -50,4 +49,10 @@ self.addEventListener("fetch", fetchEvent => {
             return res || fetch(fetchEvent.request);
         })
     );
+});
+
+self.clients.matchAll({includeUncontrolled: true}).then(clients => {
+    for (const client of clients) {
+        updateCache(new URL(client.url).href);
+    }
 });
