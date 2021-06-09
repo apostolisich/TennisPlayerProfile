@@ -10,7 +10,7 @@ let storedImages = storedItems[1];
 //Ένας event listener που "ακούει" για κλικ στη λίστα των ήδη υπαρχόντων προφίλ από το localStorage
 const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
-    if(event.target && event.target.tagName == "LI") {
+    if(event.target && event.target.tagName == "li") {
         let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
         window.location.replace('profile.html?name=' + selectedPlayerName);
     }
@@ -23,6 +23,7 @@ document.getElementById('delete-profiles-button').addEventListener('click', () =
     localStorage.removeItem(profilesStorageKey);
     existingProfilesList.style.display = "none";
     deleteProfilesButton.style.display = "none";
+    document.getElementById('profiles-warning-paragraph').style.display = "block";
 });
 
 buildAlreadyExistingProfilesList();
@@ -103,13 +104,16 @@ function buildPlayerProfile() {
 
     storedProfiles[storageKey] = playerObject;
     store(profilesStorageKey, storedProfiles);
-    window.location.replace("profile.html?name=" + storageKey);
+    window.location.replace('profile.html?name=' + storageKey);
 }
 
 //Μια συνάρτηση που "γεμίζει" τη λίστα με τα προφίλ που είναι αποθηκευμένα στο localStorage
 function buildAlreadyExistingProfilesList() {
-    if(storedProfiles && Object.keys(storedProfiles).length === 0)
+    if(storedProfiles && Object.keys(storedProfiles).length === 0){
+        existingProfilesList.style.display = "none";
+        deleteProfilesButton.style.display = "none";
         return;
+    }
 
     Object.keys(storedProfiles).forEach( key => {
         let currentProfile = storedProfiles[key];
@@ -141,9 +145,9 @@ function retrieveExistingStoredItems() {
     let profiles;
     let images;
     Object.keys(localStorage).forEach(item => {
-        if(item.startsWith("TennisProfiles")){
+        if(item.startsWith('TennisProfiles')){
             profiles = JSON.parse(localStorage.getItem(item));
-        } else if(item.startsWith("TennisImages")) {
+        } else if(item.startsWith('TennisImages')) {
             images = JSON.parse(localStorage.getItem(item));
         }
     });
@@ -160,11 +164,11 @@ function retrieveExistingStoredItems() {
 }
 
 //Κώδικας απαραίτητος για την δημιουργία ενός service worker για την σελίδα
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
         navigator.serviceWorker
-        .register("serviceWorker.js")
-        .then(res => console.log("service worker registered"))
-        .catch(err => console.log("service worker not registered", err))
+        .register('serviceWorker.js')
+        .then(res => console.log('service worker registered'))
+        .catch(err => console.log('service worker not registered', err))
     });
 };
