@@ -17,10 +17,12 @@ existingProfilesList.addEventListener('click', (event) => {
 });
 
 //Ένας event listener που "ακούει" για κλικ στο κουμπί διαγραφής όλων των υπάρχοντων προφίλ
+const deleteProfilesButton = document.getElementById('delete-profiles-button');
 document.getElementById('delete-profiles-button').addEventListener('click', () => {
     localStorage.removeItem(imagesStorageKey);
     localStorage.removeItem(profilesStorageKey);
-    location.reload();
+    existingProfilesList.style.display = "none";
+    deleteProfilesButton.style.display = "none";
 });
 
 buildAlreadyExistingProfilesList();
@@ -39,7 +41,11 @@ playerImage.addEventListener('change', () => {
 const profileForm = document.getElementById('profile-create-form');
 profileForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    buildPlayerProfile();
+    if(!navigator.onLine) {
+        document.getElementsByClassName('offline-error-message')[0].style.display = "block";
+    } else {
+        buildPlayerProfile();
+    }
 });
 
 // Μια συνάρτηση η οποία χτίζει το αρχικό αντικείμενο του αθλητή με τα στοιχεία του

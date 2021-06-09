@@ -1,21 +1,21 @@
 const cacheKey = "tennis-player-profile";
 const assets = [
     "index.html",
-	"profile.html",
+	  "profile.html",
     "css/index-page.css",
-	"css/profile-page.css",
-	"css/yearpicker.css",
+	  "css/profile-page.css",
+  	"css/yearpicker.css",
     "js/index-page.js",
-	"js/profile-page.js",
-	"js/yearpicker.js",
+	  "js/profile-page.js",
+	  "js/yearpicker.js",
     "manifest.json",
     "assets/profile/athlete_photo.webp",
     "assets/profile/facebook.png",
     "assets/profile/instagram.png",
     "assets/profile/twitter.png",
     "assets/logo/logo_144.png",
-	"assets/logo/logo_192.png",
-	"assets/logo/logo_512.png",
+  	"assets/logo/logo_192.png",
+	  "assets/logo/logo_512.png",
     "assets/tournaments/acapulco.jpg",
     "assets/tournaments/atp_cup.webp",
     "assets/tournaments/atp_finals.webp",
@@ -35,7 +35,7 @@ const assets = [
     "assets/tournaments/us_open.png"
 ];
 
-self.addEventListener("install", installEvent => {
+self.addEventListener('install', installEvent => {
     installEvent.waitUntil(
         caches.open(cacheKey).then(cache => {
            return cache.addAll(assets);
@@ -43,24 +43,16 @@ self.addEventListener("install", installEvent => {
     );
 });
 
-/*self.addEventListener("fetch", fetchEvent => {
-    fetchEvent.respondWith(
-        caches.match(fetchEvent.request).then(res => {
-            return res || fetch(fetchEvent.request);
-        })
-    );
-});*/
-
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.open('mysite-dynamic').then(function(cache) {
-        return cache.match(event.request).then(function(response) {
-          var fetchPromise = fetch(event.request).then(function(networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          })
-          return response || fetchPromise;
+  event.respondWith(
+    caches.open(cacheKey).then(function(cache) {
+      return cache.match(event.request).then(function(response) {
+        var fetchPromise = fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
         })
+        return response || fetchPromise;
       })
-    );
-  });
+    })
+  );
+});
