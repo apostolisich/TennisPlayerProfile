@@ -10,7 +10,7 @@ let storedImages = storedItems[1];
 //Ένας event listener που "ακούει" για κλικ στη λίστα των ήδη υπαρχόντων προφίλ από το localStorage
 const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
-    if(event.target && event.target.tagName == "li") {
+    if(event.target && event.target.tagName == "LI") {
         let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
         window.location.replace('profile.html?name=' + selectedPlayerName);
     }
