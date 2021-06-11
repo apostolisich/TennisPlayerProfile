@@ -1,7 +1,6 @@
 const cacheKey = "tennis-player-profile";
 const assets = [
     "index.html",
-	  "profile.html",
     "no-connection.html",
     "css/index-page.css",
 	  "css/profile-page.css",
