@@ -12,7 +12,8 @@ const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
     if(event.target && event.target.tagName == "LI") {
         let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
-        window.location.replace('profile.html?name=' + selectedPlayerName);
+        sessionStorage.setItem('storageKey', selectedPlayerName);
+        window.location.href = 'profile.html';
     }
 });
 
@@ -42,25 +43,7 @@ playerImage.addEventListener('change', () => {
 const profileForm = document.getElementById('profile-create-form');
 profileForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
-    let connectionStatus;
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", "https://apostolisich.github.io/TennisPlayerProfile/", true);
-    xmlHttp.setRequestHeader("Pragma", "no-cache");
-    xmlHttp.setRequestHeader("Cache-Control", "no-cache");
-    xmlHttp.send();
-    xmlHttp.onload = function() {
-        if(this.readyState == 4 && this.status == 200) {
-            connectionStatus = "connected";
-            buildPlayerProfile();
-        } else {
-            connectionStatus = "disconnected"
-            document.getElementsByClassName('offline-error-message')[0].style.display = "block";
-        }
-        console.log("Status: " + xmlHttp.status);
-        console.log("State: " + xmlHttp.readyState);
-        console.log(connectionStatus);
-    }
+    buildPlayerProfile();
 });
 
 // Μια συνάρτηση η οποία χτίζει το αρχικό αντικείμενο του αθλητή με τα στοιχεία του
@@ -118,7 +101,8 @@ function buildPlayerProfile() {
 
     storedProfiles[storageKey] = playerObject;
     store(profilesStorageKey, storedProfiles);
-    window.location.replace('profile.html?name=' + storageKey);
+    sessionStorage.setItem('storageKey', storageKey);
+    window.location.href = 'profile.html';
 }
 
 //Μια συνάρτηση που "γεμίζει" τη λίστα με τα προφίλ που είναι αποθηκευμένα στο localStorage

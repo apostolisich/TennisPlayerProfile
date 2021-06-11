@@ -11,7 +11,10 @@ Object.freeze(MatchResultIcons);
 const imagesStorageKey = "TennisImages";
 const profilesStorageKey = "TennisProfiles";
 
-const storedPlayerKey = getParameterByName("name");
+const storedPlayerKey = sessionStorage.getItem('storageKey');
+if(!storedPlayerKey) {
+    window.location.href = 'index.html';
+}
 const retrievedStorageData = retrievePlayerProfileData();
 let storedProfiles = retrievedStorageData[0];
 let storedImages = retrievedStorageData[1];
@@ -1042,18 +1045,6 @@ function createNewMatchObject() {
     }
 
     return newMatchObject;
-}
-
-//Μια συνάρτηση η οποία επιστρέφει την τιμή της παραμέτρου με το δοσμένο όνομα
-function getParameterByName(name, url = window.location.href) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-
-    let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    let results = regex.exec(url);
-
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 //Μια συνάρτηση η οποία αποθηκεύει το δοσμένο αντικείμενο με το δοσμένο όνομα στο localStorage
