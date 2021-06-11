@@ -2,6 +2,7 @@ const cacheKey = "tennis-player-profile";
 const assets = [
     "index.html",
 	  "profile.html",
+    "no-connection.html",
     "css/index-page.css",
 	  "css/profile-page.css",
   	"css/yearpicker.css",
@@ -43,15 +44,18 @@ self.addEventListener('install', installEvent => {
     );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.open(cacheKey).then(function(cache) {
-      return cache.match(event.request).then(function(response) {
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        })
-        return response || fetchPromise;
+    caches.match(event.request).then((resp) => {
+      return resp || fetch(event.request).then((response) => {
+        let responseClone = response.clone();
+        caches.open(cacheKey).then((cache) => {
+          cache.put(event.request, responseClone);
+        });
+
+        return response;
+      }).catch(() => {
+        return caches.match('no-connection.html');
       })
     })
   );

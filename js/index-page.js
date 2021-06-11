@@ -1,23 +1,5 @@
 'use strict'
 
-let connectionStatus;
-let xmlHttp = new XMLHttpRequest();
-xmlHttp.open("GET", "https://apostolisich.github.io/TennisPlayerProfile/", true);
-xmlHttp.setRequestHeader("Pragma", "no-cache");
-xmlHttp.setRequestHeader("Cache-Control", "no-cache");
-xmlHttp.send();
-xmlHttp.onload = function() {
-    if(this.readyState == 4 && this.status == 200) {
-        connectionStatus = "connected";
-    } else {
-        connectionStatus = "disconnected"
-        document.getElementById('create-profile-section').style.display = "none";
-    }
-    console.log("Status: " + xmlHttp.status);
-    console.log("State: " + xmlHttp.readyState);
-    console.log(connectionStatus);
-}
-
 const imagesStorageKey = "TennisImages";
 const profilesStorageKey = "TennisProfiles";
 
@@ -60,10 +42,24 @@ playerImage.addEventListener('change', () => {
 const profileForm = document.getElementById('profile-create-form');
 profileForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    if(!navigator.onLine) {
-        document.getElementsByClassName('offline-error-message')[0].style.display = "block";
-    } else {
-        buildPlayerProfile();
+
+    let connectionStatus;
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "https://apostolisich.github.io/TennisPlayerProfile/", true);
+    xmlHttp.setRequestHeader("Pragma", "no-cache");
+    xmlHttp.setRequestHeader("Cache-Control", "no-cache");
+    xmlHttp.send();
+    xmlHttp.onload = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            connectionStatus = "connected";
+            buildPlayerProfile();
+        } else {
+            connectionStatus = "disconnected"
+            document.getElementsByClassName('offline-error-message')[0].style.display = "block";
+        }
+        console.log("Status: " + xmlHttp.status);
+        console.log("State: " + xmlHttp.readyState);
+        console.log(connectionStatus);
     }
 });
 

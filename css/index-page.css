@@ -100,6 +100,12 @@ ul li {
     margin: 5px 0px;
 }
 
+.offline-error-message-2 {
+    color: 	#F22A2A;
+    font-weight: bold;
+    margin: 5px 0px;
+}
+
 @media all and (max-width: 400px) {
     .input-field-container {
         flex-direction: column;
