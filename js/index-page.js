@@ -12,7 +12,7 @@ const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
     if(event.target && event.target.tagName == "LI") {
         let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
-        sessionStorage.setItem('storageKey', selectedPlayerName);
+        sessionStorage.setItem('selectedTennisPlayerName', selectedPlayerName);
         window.location.href = 'profile.html';
     }
 });

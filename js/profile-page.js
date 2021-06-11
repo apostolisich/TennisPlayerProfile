@@ -11,7 +11,7 @@ Object.freeze(MatchResultIcons);
 const imagesStorageKey = "TennisImages";
 const profilesStorageKey = "TennisProfiles";
 
-const storedPlayerKey = sessionStorage.getItem('storageKey');
+const storedPlayerKey = sessionStorage.getItem('selectedTennisPlayerName');
 if(!storedPlayerKey) {
     window.location.href = 'index.html';
 }
