@@ -1,5 +1,6 @@
 'use strict'
 
+const sessionStorageProfileKey = "selectedTennisPlayerName";
 const imagesStorageKey = "TennisImages";
 const profilesStorageKey = "TennisProfiles";
 
@@ -12,7 +13,7 @@ const existingProfilesList = document.getElementById('existing-profiles-list');
 existingProfilesList.addEventListener('click', (event) => {
     if(event.target && event.target.tagName == "LI") {
         let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
-        sessionStorage.setItem('selectedTennisPlayerName', selectedPlayerName);
+        sessionStorage.setItem(sessionStorageProfileKey, selectedPlayerName);
         window.location.href = 'profile.html';
     }
 });
@@ -101,7 +102,7 @@ function buildPlayerProfile() {
 
     storedProfiles[storageKey] = playerObject;
     store(profilesStorageKey, storedProfiles);
-    sessionStorage.setItem('storageKey', storageKey);
+    sessionStorage.setItem(sessionStorageProfileKey, storageKey);
     window.location.href = 'profile.html';
 }
 
