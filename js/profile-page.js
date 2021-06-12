@@ -1,5 +1,10 @@
 'use strict';
 
+const imagesStorageKey = "TennisImages";
+const profilesStorageKey = "TennisProfiles";
+const storedPlayerKey = sessionStorage.getItem('selectedTennisPlayerName');
+verifyStoredPlayerKeyExistance(storedPlayerKey);
+
 //Ένα σταθερό αντικείμενο το οποίο περιέχει τις εικόνες για νίκη/ήττα για εύκολη αναφορά
 const MatchResultIcons = {
     WIN: '<svg viewBox="0 0 24 24" width="20" height="20" fill="#52b030"><path d="M24,12c0,6.6-5.4,12-12,12C5.4,24,0,18.6,0,12S5.4,0,12,0C18.6,0,24,5.4,24,12z M15.7,16.9l2.1-9.8h-2.3 l-1.1,6.1L13,7.1h-2l-1.3,6.1L8.5,7.1H6.2l2.1,9.8h2.4l1.3-5.6l1.3,5.6H15.7L15.7,16.9z"></path></svg>',
@@ -8,13 +13,6 @@ const MatchResultIcons = {
 };
 Object.freeze(MatchResultIcons);
 
-const imagesStorageKey = "TennisImages";
-const profilesStorageKey = "TennisProfiles";
-
-const storedPlayerKey = sessionStorage.getItem('selectedTennisPlayerName');
-if(!storedPlayerKey) {
-    window.location.href = 'index.html';
-}
 const retrievedStorageData = retrievePlayerProfileData();
 let storedProfiles = retrievedStorageData[0];
 let storedImages = retrievedStorageData[1];
@@ -41,6 +39,15 @@ generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData.Career.single
 generateAvailableFilterValuesFor(storedPlayerProfileStatsTableData.Career.singlesReturnRecordData, 'statistics-filter-return-dropdown-items', 'statistics');
 generateAvailableFilterValuesFor(storedPlayerProfileMatchesTableData, 'matches-filter-dropdown-items', 'matches');
 generateAvailableFilterValuesFor(storedPlayerProfileTitlesTableData, 'titles-filter-dropdown-items', 'titles');
+
+//Μια συνάρτηση η οποία ελέγχει αν έχει τεθεί το storedPlayerKey, δηλαδή αν έχει γίνει επιλογή προφίλ από το menu ή
+//αν ο χρήστης δημιουργήσει μόλις κάποιο και μεταφέρθηκε στη σελίδα profile.html, διαφορετικά τον επιστρέφει στην
+//αρχική σελίδα
+function verifyStoredPlayerKeyExistance(storedPlayerKey) {
+    if(!storedPlayerKey) {
+        window.location.href = 'index.html';
+    }
+}
 
 //Μία συνάρτηση η οποία δημιουργεί ένα αντικείμενο τύπου reader, το οποίο θα διαβάζει και θα αποθηκεύει κατάλληλα τις
 //φωτογραφίες των τουρνουά αγώνων τα οποία έχει κατακτήσει ο αθλητής
