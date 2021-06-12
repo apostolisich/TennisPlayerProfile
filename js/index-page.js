@@ -7,6 +7,17 @@ const profilesStorageKey = "TennisProfiles";
 const storedItems = retrieveExistingStoredItems();
 let storedProfiles = storedItems[0];
 let storedImages = storedItems[1];
+
+//Ένας event listener που "ακούει" για κλικ στη λίστα των ήδη υπαρχόντων προφίλ από το localStorage
+const existingProfilesList = document.getElementById('existing-profiles-list');
+existingProfilesList.addEventListener('click', (event) => {
+    if(event.target && event.target.tagName == "LI") {
+        let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
+        sessionStorage.setItem(sessionStorageProfileKey, selectedPlayerName);
+        window.location.href = 'profile.html';
+    }
+});
+
 buildAlreadyExistingProfilesList();
 
 //Μια συνάρτηση που "γεμίζει" τη λίστα με τα προφίλ που είναι αποθηκευμένα στο localStorage
@@ -36,16 +47,6 @@ function buildAlreadyExistingProfilesList() {
     });
     document.getElementById('profiles-warning-paragraph').style.display = "none";
 }
-
-//Ένας event listener που "ακούει" για κλικ στη λίστα των ήδη υπαρχόντων προφίλ από το localStorage
-const existingProfilesList = document.getElementById('existing-profiles-list');
-existingProfilesList.addEventListener('click', (event) => {
-    if(event.target && event.target.tagName == "LI") {
-        let selectedPlayerName = event.target.querySelectorAll('p')[0].innerHTML.replace(/\s+/g, '');
-        sessionStorage.setItem(sessionStorageProfileKey, selectedPlayerName);
-        window.location.href = 'profile.html';
-    }
-});
 
 //Ένας event listener που "ακούει" για κλικ στο κουμπί διαγραφής όλων των υπάρχοντων προφίλ
 const deleteProfilesButton = document.getElementById('delete-profiles-button');
